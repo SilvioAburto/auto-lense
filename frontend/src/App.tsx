@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { 
-  Settings, 
-  Activity, 
-  Zap, 
-  Play, 
-  Microscope, 
-  ArrowLeft, 
-  AlertTriangle, 
-  CheckCircle, 
-  Clock, 
+import {
+  Settings,
+  Activity,
+  Zap,
+  Play,
+  Microscope,
+  ArrowLeft,
+  AlertTriangle,
+  CheckCircle,
+  Clock,
   FileText,
   TrendingUp,
   Monitor,
@@ -184,10 +184,9 @@ const HomePage: React.FC<{ onInstrumentSelect: (id: string) => void }> = ({ onIn
                     <IconComponent className={`w-8 h-8 text-white`} />
                   </div>
                   <div className="flex items-center space-x-2">
-                    <div className={`w-3 h-3 rounded-full ${
-                      instrument.status === 'online' ? 'bg-green-400' :
+                    <div className={`w-3 h-3 rounded-full ${instrument.status === 'online' ? 'bg-green-400' :
                       instrument.status === 'maintenance' ? 'bg-yellow-400' : 'bg-red-400'
-                    } shadow-lg`}></div>
+                      } shadow-lg`}></div>
                     <span className="text-xs text-slate-300 capitalize">{instrument.status}</span>
                   </div>
                 </div>
@@ -225,7 +224,7 @@ const VWorksDashboard: React.FC<{ onBack: () => void }> = ({ onBack }) => {
     return new Date(timestamp).toLocaleTimeString();
   };
 
-  const StatCard: React.FC<{ title: string; value: string | number; icon: React.ElementType; color: string; trend?: string }> = 
+  const StatCard: React.FC<{ title: string; value: string | number; icon: React.ElementType; color: string; trend?: string }> =
     ({ title, value, icon: Icon, color, trend }) => (
       <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
         <div className="flex items-center justify-between">
@@ -322,11 +321,10 @@ const VWorksDashboard: React.FC<{ onBack: () => void }> = ({ onBack }) => {
                   <button
                     key={tab.id}
                     onClick={() => setSelectedTab(tab.id as any)}
-                    className={`flex items-center space-x-2 py-4 px-1 border-b-2 font-medium text-sm transition-colors ${
-                      selectedTab === tab.id
-                        ? 'border-blue-500 text-blue-600'
-                        : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
-                    }`}
+                    className={`flex items-center space-x-2 py-4 px-1 border-b-2 font-medium text-sm transition-colors ${selectedTab === tab.id
+                      ? 'border-blue-500 text-blue-600'
+                      : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                      }`}
                   >
                     <Icon className="w-4 h-4" />
                     <span>{tab.label}</span>
