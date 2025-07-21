@@ -14,6 +14,7 @@ import {
   Monitor,
   RefreshCw
 } from 'lucide-react';
+import { Sparkles, Sun } from 'lucide-react'
 
 // Types for our lab data
 interface LabEvent {
@@ -46,8 +47,8 @@ const instruments = [
   {
     id: 'vworks',
     name: 'VWorks',
-    description: 'Automated liquid handling and plate processing',
-    icon: Settings,
+    description: "Agilent's Lab Automation scheduler.",
+    icon: Sun,
     color: 'bg-blue-500',
     status: 'online'
   },
