@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+// @ts-ignore
+import { invoke } from '@tauri-apps/api/core';
 import {
   Settings,
   Activity,
@@ -10,6 +12,7 @@ import {
   CheckCircle,
   Clock,
   FileText,
+  AudioLines,
   TrendingUp,
   Monitor,
   RefreshCw
@@ -55,7 +58,7 @@ const instruments = [
   {
     id: 'venus',
     name: 'Venus',
-    description: 'STAR liquid handling workstation control',
+    description: "Hamilton's method manager logs.",
     icon: Activity,
     color: 'bg-green-500',
     status: 'online'
@@ -64,7 +67,7 @@ const instruments = [
     id: 'echo',
     name: 'Echo',
     description: 'Acoustic liquid handling technology',
-    icon: Zap,
+    icon: AudioLines,
     color: 'bg-yellow-500',
     status: 'maintenance'
   },
@@ -155,7 +158,26 @@ const sampleVWorksData: ParsedLogData = {
 };
 
 // Home Page Component
-const HomePage: React.FC<{ onInstrumentSelect: (id: string) => void }> = ({ onInstrumentSelect }) => {
+const HomePage: React.FC<{ onInstrumentSelect: (id: string) => void, onLogParsed: (data: ParsedLogData) => void }> = ({ onInstrumentSelect, onLogParsed }) => {
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const handleSelectLog = async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      const result = await invoke<string>('select_and_parse_logs');
+      if (result) {
+        const parsed: ParsedLogData = JSON.parse(result);
+        onLogParsed(parsed);
+      }
+    } catch (e: any) {
+      setError(e?.toString() || 'Failed to parse log');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 p-6">
       <div className="max-w-6xl mx-auto">
@@ -167,6 +189,16 @@ const HomePage: React.FC<{ onInstrumentSelect: (id: string) => void }> = ({ onIn
           <p className="text-xl text-slate-300 font-light">
             Monitor and control your laboratory instruments
           </p>
+          <div className="mt-6 flex flex-col items-center gap-2">
+            <button
+              onClick={handleSelectLog}
+              className="px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold shadow hover:bg-blue-700 transition-colors disabled:opacity-50"
+              disabled={loading}
+            >
+              {loading ? 'Parsing...' : 'Select VWorks Log'}
+            </button>
+            {error && <div className="text-red-400 text-sm mt-2">{error}</div>}
+          </div>
         </div>
 
         {/* Instruments Grid */}
@@ -485,6 +517,7 @@ const VWorksDashboard: React.FC<{ onBack: () => void }> = ({ onBack }) => {
 // Main App Component
 const LabAutomationApp: React.FC = () => {
   const [currentView, setCurrentView] = useState<'home' | string>('home');
+  const [logData, setLogData] = useState<ParsedLogData>(sampleVWorksData);
 
   const handleInstrumentSelect = (instrumentId: string) => {
     setCurrentView(instrumentId);
@@ -494,10 +527,15 @@ const LabAutomationApp: React.FC = () => {
     setCurrentView('home');
   };
 
+  const handleLogParsed = (data: ParsedLogData) => {
+    setLogData(data);
+    setCurrentView('vworks');
+  };
+
   return (
     <div className="app">
       {currentView === 'home' && (
-        <HomePage onInstrumentSelect={handleInstrumentSelect} />
+        <HomePage onInstrumentSelect={handleInstrumentSelect} onLogParsed={handleLogParsed} />
       )}
       {currentView === 'vworks' && (
         <VWorksDashboard onBack={handleBackToHome} />
