@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-// @ts-ignore
+import React, { useState, useEffect, useRef } from 'react';
 import { invoke } from '@tauri-apps/api/core';
+import { open } from '@tauri-apps/plugin-dialog';
 import {
   Settings,
   Activity,
@@ -15,9 +15,12 @@ import {
   AudioLines,
   TrendingUp,
   Monitor,
-  RefreshCw
+  RefreshCw,
+  Folder,
+  Sun,
+  Sparkles
 } from 'lucide-react';
-import { Sparkles, Sun } from 'lucide-react'
+import logo from '../auto-lense-logo-square-removebg-preview.png';
 
 // Types for our lab data
 interface LabEvent {
@@ -157,6 +160,24 @@ const sampleVWorksData: ParsedLogData = {
   parsedAt: '2024-07-17T15:30:00Z'
 };
 
+// Navbar component
+const Navbar: React.FC = () => (
+  <nav className="w-full bg-slate-200 border-b border-gray-900 fixed top-0 left-0 z-50">
+    <div className="max-w-6xl mx-auto flex items-center justify-between px-4 py-2">
+      <div className="flex items-center gap-2">
+        <img src={logo} alt="AutoLense Logo" className="h-8 w-8 rounded" />
+        <span className="text-lg font-bold black">AutoLense</span>
+      </div>
+      <ul className="flex items-center gap-6 text-sm font-medium text-black">
+        <li><a href="#vworks" className="hover:text-blue-500 transition-colors">VWorks</a></li>
+        <li><a href="#greenbuttonGo" className="hover:text-blue-500 transition-colors">Green Button Go</a></li>
+        <li><a href="#biomek" className="hover:text-blue-500 transition-colors">Biomek</a></li>
+        <li><a href="https://github.com/" target="_blank" rel="noopener noreferrer" className="hover:text-blue-500 transition-colors">GitHub</a></li>
+      </ul>
+    </div>
+  </nav>
+);
+
 // Home Page Component
 const HomePage: React.FC<{ onInstrumentSelect: (id: string) => void, onLogParsed: (data: ParsedLogData) => void }> = ({ onInstrumentSelect, onLogParsed }) => {
   const [loading, setLoading] = useState(false);
@@ -179,72 +200,61 @@ const HomePage: React.FC<{ onInstrumentSelect: (id: string) => void, onLogParsed
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 p-6">
-      <div className="max-w-6xl mx-auto">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <h1 className="text-5xl font-bold text-white mb-4 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-            Lab Automation Dashboard
-          </h1>
-          <p className="text-xl text-slate-300 font-light">
-            Monitor and control your laboratory instruments
-          </p>
-          <div className="mt-6 flex flex-col items-center gap-2">
-            <button
-              onClick={handleSelectLog}
-              className="px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold shadow hover:bg-blue-700 transition-colors disabled:opacity-50"
-              disabled={loading}
-            >
-              {loading ? 'Parsing...' : 'Select VWorks Log'}
-            </button>
+    <>
+      <Navbar />
+      <div className="pt-16 min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 p-6">
+        <div className="max-w-6xl mx-auto">
+          {/* Header */}
+          <div className="text-center mb-12">
+            <p className="text-xl text-slate-300 font-light">
+              Monitor and analyze your laboratory automation logs.
+            </p>
             {error && <div className="text-red-400 text-sm mt-2">{error}</div>}
           </div>
-        </div>
-
-        {/* Instruments Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {instruments.map((instrument) => {
-            const IconComponent = instrument.icon;
-            return (
-              <div
-                key={instrument.id}
-                onClick={() => onInstrumentSelect(instrument.id)}
-                className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 cursor-pointer transition-all duration-300 hover:transform hover:scale-105 hover:bg-white/20 hover:shadow-2xl group"
-              >
-                {/* Status Indicator */}
-                <div className="flex justify-between items-start mb-4">
-                  <div className={`p-3 rounded-xl ${instrument.color} bg-opacity-20 group-hover:bg-opacity-30 transition-all duration-300`}>
-                    <IconComponent className={`w-8 h-8 text-white`} />
+          {/* Instruments Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {instruments.map((instrument) => {
+              const IconComponent = instrument.icon;
+              return (
+                <div
+                  key={instrument.id}
+                  id={instrument.id}
+                  onClick={() => onInstrumentSelect(instrument.id)}
+                  className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 cursor-pointer transition-all duration-300 hover:transform hover:scale-105 hover:bg-white/20 hover:shadow-2xl group"
+                >
+                  {/* Status Indicator */}
+                  <div className="flex justify-between items-start mb-4">
+                    <div className={`p-3 rounded-xl ${instrument.color} bg-opacity-20 group-hover:bg-opacity-30 transition-all duration-300`}>
+                      <IconComponent className={`w-8 h-8 text-white`} />
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <div className={`w-3 h-3 rounded-full ${instrument.status === 'online' ? 'bg-green-400' :
+                        instrument.status === 'maintenance' ? 'bg-yellow-400' : 'bg-red-400'
+                        } shadow-lg`}></div>
+                      <span className="text-xs text-slate-300 capitalize">{instrument.status}</span>
+                    </div>
                   </div>
-                  <div className="flex items-center space-x-2">
-                    <div className={`w-3 h-3 rounded-full ${instrument.status === 'online' ? 'bg-green-400' :
-                      instrument.status === 'maintenance' ? 'bg-yellow-400' : 'bg-red-400'
-                      } shadow-lg`}></div>
-                    <span className="text-xs text-slate-300 capitalize">{instrument.status}</span>
+                  {/* Content */}
+                  <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-blue-300 transition-colors">
+                    {instrument.name}
+                  </h3>
+                  <p className="text-slate-300 text-sm leading-relaxed mb-4">
+                    {instrument.description}
+                  </p>
+                  {/* Action indicator */}
+                  <div className="flex items-center text-blue-400 text-sm font-medium">
+                    <span>View Dashboard</span>
+                    <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
                   </div>
                 </div>
-
-                {/* Content */}
-                <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-blue-300 transition-colors">
-                  {instrument.name}
-                </h3>
-                <p className="text-slate-300 text-sm leading-relaxed mb-4">
-                  {instrument.description}
-                </p>
-
-                {/* Action indicator */}
-                <div className="flex items-center text-blue-400 text-sm font-medium">
-                  <span>View Dashboard</span>
-                  <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
-                </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
@@ -252,6 +262,46 @@ const HomePage: React.FC<{ onInstrumentSelect: (id: string) => void, onLogParsed
 const VWorksDashboard: React.FC<{ onBack: () => void }> = ({ onBack }) => {
   const [logData, setLogData] = useState<ParsedLogData>(sampleVWorksData);
   const [selectedTab, setSelectedTab] = useState<'overview' | 'events' | 'errors' | 'instruments'>('overview');
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [directory, setDirectory] = useState<string>('C:\\VWorks Workspace\\VWorks\\Logs');
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
+
+  useEffect(() => {
+    if (fileInputRef.current) {
+      fileInputRef.current.setAttribute('webkitdirectory', '');
+    }
+  }, []);
+
+  const handleDirectorySelect = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.files || e.target.files.length === 0) return;
+    // Only update the directory path in the input, do not upload or parse files
+    const file = e.target.files[0];
+    if (!file) return;
+    // @ts-ignore
+    const dirPath = file.webkitRelativePath.split('/')[0];
+    setDirectory(dirPath);
+    // Optionally, save to localStorage or other persistent storage here if needed
+  };
+
+  // Folder selection logic using @tauri-apps/plugin-dialog
+  const handleFolderClick = async () => {
+    try {
+      const selected = await open({ directory: true, multiple: false });
+      if (Array.isArray(selected)) {
+        // User selected multiple directories (should not happen with multiple: false)
+        setDirectory(selected[0] || directory);
+      } else if (selected === null) {
+        // User cancelled the selection
+        // Do nothing
+      } else {
+        // User selected a single directory
+        setDirectory(selected as string);
+      }
+    } catch (e) {
+      // Optionally handle error
+    }
+  };
 
   const formatTimestamp = (timestamp: string) => {
     return new Date(timestamp).toLocaleTimeString();
@@ -302,10 +352,21 @@ const VWorksDashboard: React.FC<{ onBack: () => void }> = ({ onBack }) => {
               </div>
             </div>
             <div className="flex items-center space-x-3">
-              <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center space-x-2">
-                <RefreshCw className="w-4 h-4" />
-                <span>Refresh</span>
+              <input
+                type="text"
+                value={directory}
+                readOnly
+                className="px-3 py-2 rounded-l-lg border border-gray-300 bg-gray-50 text-gray-700 w-72 focus:outline-none focus:ring-2 focus:ring-blue-200"
+              />
+              <button
+                onClick={handleFolderClick}
+                className="px-3 py-2 bg-blue-600 text-white rounded-r-lg hover:bg-blue-700 transition-colors flex items-center"
+                title="Select Directory"
+                disabled={loading}
+              >
+                <Folder className="w-5 h-5" />
               </button>
+              {error && <div className="text-red-400 text-sm mt-2">{error}</div>}
             </div>
           </div>
         </div>
@@ -335,7 +396,7 @@ const VWorksDashboard: React.FC<{ onBack: () => void }> = ({ onBack }) => {
             title="Processes"
             value={Object.keys(logData.processGroups).length}
             icon={Settings}
-            color="bg-purple-500"
+            color="bg-blue-500"
           />
         </div>
 
