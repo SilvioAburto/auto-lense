@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AutoLense")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b239fffd785bd0c855f89a09192b3c6c42d0732b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+28287542d241cc26bcba3d39e49fd531883a71b2")]
 [assembly: System.Reflection.AssemblyProductAttribute("AutoLense")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AutoLense")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
