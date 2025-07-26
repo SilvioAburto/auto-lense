@@ -21,6 +21,7 @@ import {
   Sparkles
 } from 'lucide-react';
 import logo from '../auto-lense-logo-square-removebg-preview.png';
+import VWorksDashboard from './components/VWorksDashboard';
 
 // Types for our lab data
 interface LabEvent {
@@ -172,32 +173,14 @@ const Navbar: React.FC = () => (
         <li><a href="#vworks" className="hover:text-blue-500 transition-colors">VWorks</a></li>
         <li><a href="#greenbuttonGo" className="hover:text-blue-500 transition-colors">Green Button Go</a></li>
         <li><a href="#biomek" className="hover:text-blue-500 transition-colors">Biomek</a></li>
-        <li><a href="https://github.com/" target="_blank" rel="noopener noreferrer" className="hover:text-blue-500 transition-colors">GitHub</a></li>
+        <li><a href="https://github.com/SilvioAburto/auto-lense" target="_blank" rel="noopener noreferrer" className="hover:text-blue-500 transition-colors">GitHub</a></li>
       </ul>
     </div>
   </nav>
 );
 
 // Home Page Component
-const HomePage: React.FC<{ onInstrumentSelect: (id: string) => void, onLogParsed: (data: ParsedLogData) => void }> = ({ onInstrumentSelect, onLogParsed }) => {
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-
-  const handleSelectLog = async () => {
-    setLoading(true);
-    setError(null);
-    try {
-      const result = await invoke<string>('select_and_parse_logs');
-      if (result) {
-        const parsed: ParsedLogData = JSON.parse(result);
-        onLogParsed(parsed);
-      }
-    } catch (e: any) {
-      setError(e?.toString() || 'Failed to parse log');
-    } finally {
-      setLoading(false);
-    }
-  };
+const HomePage: React.FC<{ onInstrumentSelect: (id: string) => void }> = ({ onInstrumentSelect }) => {
 
   return (
     <>
@@ -209,7 +192,7 @@ const HomePage: React.FC<{ onInstrumentSelect: (id: string) => void, onLogParsed
             <p className="text-xl text-slate-300 font-light">
               Monitor and analyze your laboratory automation logs.
             </p>
-            {error && <div className="text-red-400 text-sm mt-2">{error}</div>}
+
           </div>
           {/* Instruments Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -258,322 +241,7 @@ const HomePage: React.FC<{ onInstrumentSelect: (id: string) => void, onLogParsed
   );
 };
 
-// VWorks Dashboard Component
-const VWorksDashboard: React.FC<{ onBack: () => void }> = ({ onBack }) => {
-  const [logData, setLogData] = useState<ParsedLogData>(sampleVWorksData);
-  const [selectedTab, setSelectedTab] = useState<'overview' | 'events' | 'errors' | 'instruments'>('overview');
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const [directory, setDirectory] = useState<string>('C:\\VWorks Workspace\\VWorks\\Logs');
-  const fileInputRef = useRef<HTMLInputElement | null>(null);
 
-  useEffect(() => {
-    if (fileInputRef.current) {
-      fileInputRef.current.setAttribute('webkitdirectory', '');
-    }
-  }, []);
-
-  const handleDirectorySelect = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (!e.target.files || e.target.files.length === 0) return;
-    // Only update the directory path in the input, do not upload or parse files
-    const file = e.target.files[0];
-    if (!file) return;
-    // @ts-ignore
-    const dirPath = file.webkitRelativePath.split('/')[0];
-    setDirectory(dirPath);
-    // Optionally, save to localStorage or other persistent storage here if needed
-  };
-
-  // Folder selection logic using @tauri-apps/plugin-dialog
-  const handleFolderClick = async () => {
-    try {
-      const selected = await open({ directory: true, multiple: false });
-      if (Array.isArray(selected)) {
-        // User selected multiple directories (should not happen with multiple: false)
-        setDirectory(selected[0] || directory);
-      } else if (selected === null) {
-        // User cancelled the selection
-        // Do nothing
-      } else {
-        // User selected a single directory
-        setDirectory(selected as string);
-      }
-    } catch (e) {
-      // Optionally handle error
-    }
-  };
-
-  const formatTimestamp = (timestamp: string) => {
-    return new Date(timestamp).toLocaleTimeString();
-  };
-
-  const StatCard: React.FC<{ title: string; value: string | number; icon: React.ElementType; color: string; trend?: string }> =
-    ({ title, value, icon: Icon, color, trend }) => (
-      <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
-        <div className="flex items-center justify-between">
-          <div>
-            <p className="text-sm font-medium text-gray-600">{title}</p>
-            <p className="text-2xl font-bold text-gray-900 mt-1">{value}</p>
-            {trend && (
-              <p className="text-sm text-green-600 mt-1 flex items-center">
-                <TrendingUp className="w-4 h-4 mr-1" />
-                {trend}
-              </p>
-            )}
-          </div>
-          <div className={`p-3 rounded-lg ${color}`}>
-            <Icon className="w-6 h-6 text-white" />
-          </div>
-        </div>
-      </div>
-    );
-
-  return (
-    <div className="min-h-screen bg-gray-50 p-6">
-      <div className="max-w-7xl mx-auto">
-        {/* Header */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-6">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-4">
-              <button
-                onClick={onBack}
-                className="p-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition-colors"
-              >
-                <ArrowLeft className="w-5 h-5 text-gray-600" />
-              </button>
-              <div className="flex items-center space-x-3">
-                <div className="p-3 rounded-lg bg-blue-500">
-                  <Settings className="w-6 h-6 text-white" />
-                </div>
-                <div>
-                  <h1 className="text-2xl font-bold text-gray-900">VWorks Dashboard</h1>
-                  <p className="text-gray-600">Real-time monitoring and log analysis</p>
-                </div>
-              </div>
-            </div>
-            <div className="flex items-center space-x-3">
-              <input
-                type="text"
-                value={directory}
-                readOnly
-                className="px-3 py-2 rounded-l-lg border border-gray-300 bg-gray-50 text-gray-700 w-72 focus:outline-none focus:ring-2 focus:ring-blue-200"
-              />
-              <button
-                onClick={handleFolderClick}
-                className="px-3 py-2 bg-blue-600 text-white rounded-r-lg hover:bg-blue-700 transition-colors flex items-center"
-                title="Select Directory"
-                disabled={loading}
-              >
-                <Folder className="w-5 h-5" />
-              </button>
-              {error && <div className="text-red-400 text-sm mt-2">{error}</div>}
-            </div>
-          </div>
-        </div>
-
-        {/* Stats Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
-          <StatCard
-            title="Total Events"
-            value={logData.events.length}
-            icon={Activity}
-            color="bg-blue-500"
-            trend="+12% from last hour"
-          />
-          <StatCard
-            title="Active Errors"
-            value={logData.errors.length}
-            icon={AlertTriangle}
-            color="bg-red-500"
-          />
-          <StatCard
-            title="Instruments"
-            value={Object.keys(logData.instrumentEventCounts).length}
-            icon={Monitor}
-            color="bg-green-500"
-          />
-          <StatCard
-            title="Processes"
-            value={Object.keys(logData.processGroups).length}
-            icon={Settings}
-            color="bg-blue-500"
-          />
-        </div>
-
-        {/* Navigation Tabs */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 mb-6">
-          <div className="border-b border-gray-200">
-            <nav className="flex space-x-8 px-6">
-              {[
-                { id: 'overview', label: 'Overview', icon: Monitor },
-                { id: 'events', label: 'Recent Events', icon: Activity },
-                { id: 'errors', label: 'Errors', icon: AlertTriangle },
-                { id: 'instruments', label: 'Instruments', icon: Settings }
-              ].map((tab) => {
-                const Icon = tab.icon;
-                return (
-                  <button
-                    key={tab.id}
-                    onClick={() => setSelectedTab(tab.id as any)}
-                    className={`flex items-center space-x-2 py-4 px-1 border-b-2 font-medium text-sm transition-colors ${selectedTab === tab.id
-                      ? 'border-blue-500 text-blue-600'
-                      : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
-                      }`}
-                  >
-                    <Icon className="w-4 h-4" />
-                    <span>{tab.label}</span>
-                  </button>
-                );
-              })}
-            </nav>
-          </div>
-
-          {/* Tab Content */}
-          <div className="p-6">
-            {selectedTab === 'overview' && (
-              <div className="space-y-6">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                  {/* Recent Activity */}
-                  <div className="bg-gray-50 rounded-lg p-4">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
-                      <Clock className="w-5 h-5 mr-2 text-blue-500" />
-                      Recent Activity
-                    </h3>
-                    <div className="space-y-3">
-                      {logData.events.slice(0, 5).map((event, index) => (
-                        <div key={index} className="flex items-center space-x-3 p-3 bg-white rounded-lg">
-                          <div className={`w-2 h-2 rounded-full ${event.isError ? 'bg-red-500' : 'bg-green-500'}`}></div>
-                          <div className="flex-1 min-w-0">
-                            <p className="text-sm font-medium text-gray-900 truncate">{event.description}</p>
-                            <p className="text-xs text-gray-500">{event.instrument} • {formatTimestamp(event.timestamp)}</p>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Instrument Status */}
-                  <div className="bg-gray-50 rounded-lg p-4">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
-                      <Monitor className="w-5 h-5 mr-2 text-blue-500" />
-                      Instrument Activity
-                    </h3>
-                    <div className="space-y-3">
-                      {Object.entries(logData.instrumentEventCounts).map(([instrument, count]) => (
-                        <div key={instrument} className="flex items-center justify-between p-3 bg-white rounded-lg">
-                          <span className="text-sm font-medium text-gray-900 truncate">{instrument}</span>
-                          <div className="flex items-center space-x-2">
-                            <span className="text-sm text-gray-600">{count} events</span>
-                            <div className="w-2 h-2 rounded-full bg-green-500"></div>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            )}
-
-            {selectedTab === 'events' && (
-              <div className="space-y-4">
-                <h3 className="text-lg font-semibold text-gray-900">Recent Events</h3>
-                <div className="space-y-2">
-                  {logData.events.map((event, index) => (
-                    <div key={index} className="flex items-center space-x-4 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-                      <div className={`w-3 h-3 rounded-full ${event.isError ? 'bg-red-500' : event.isCompleted ? 'bg-green-500' : 'bg-blue-500'}`}></div>
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-center space-x-2">
-                          <span className="text-sm font-medium text-gray-900">{event.instrument}</span>
-                          <span className="text-xs text-gray-500">•</span>
-                          <span className="text-xs text-gray-500">{formatTimestamp(event.timestamp)}</span>
-                        </div>
-                        <p className="text-sm text-gray-700 mt-1">{event.description}</p>
-                        {event.process && (
-                          <span className="inline-block px-2 py-1 text-xs bg-blue-100 text-blue-800 rounded mt-2">
-                            {event.process}
-                          </span>
-                        )}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {selectedTab === 'errors' && (
-              <div className="space-y-4">
-                <div className="flex items-center justify-between">
-                  <h3 className="text-lg font-semibold text-gray-900">Error Log</h3>
-                  <span className="px-3 py-1 text-sm bg-red-100 text-red-800 rounded-full">
-                    {logData.errors.length} active errors
-                  </span>
-                </div>
-                {logData.errors.length === 0 ? (
-                  <div className="text-center py-12">
-                    <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
-                    <h3 className="text-lg font-medium text-gray-900 mb-2">No errors found</h3>
-                    <p className="text-gray-600">All systems are running normally</p>
-                  </div>
-                ) : (
-                  <div className="space-y-3">
-                    {logData.errors.map((error, index) => (
-                      <div key={index} className="p-4 bg-red-50 border border-red-200 rounded-lg">
-                        <div className="flex items-start space-x-3">
-                          <AlertTriangle className="w-5 h-5 text-red-500 mt-0.5" />
-                          <div className="flex-1">
-                            <div className="flex items-center space-x-2 mb-1">
-                              <span className="text-sm font-medium text-red-900">{error.instrument}</span>
-                              <span className="text-xs text-red-600">•</span>
-                              <span className="text-xs text-red-600">{formatTimestamp(error.timestamp)}</span>
-                            </div>
-                            <p className="text-sm text-red-800">{error.description}</p>
-                            {error.location && (
-                              <p className="text-xs text-red-600 mt-1">Location: {error.location}</p>
-                            )}
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </div>
-            )}
-
-            {selectedTab === 'instruments' && (
-              <div className="space-y-4">
-                <h3 className="text-lg font-semibold text-gray-900">Instrument Status</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                  {Object.entries(logData.instrumentEventCounts).map(([instrument, count]) => (
-                    <div key={instrument} className="p-4 bg-gray-50 rounded-lg">
-                      <div className="flex items-center justify-between mb-3">
-                        <h4 className="font-medium text-gray-900 text-sm truncate">{instrument}</h4>
-                        <div className="w-3 h-3 rounded-full bg-green-500"></div>
-                      </div>
-                      <div className="space-y-2">
-                        <div className="flex justify-between text-sm">
-                          <span className="text-gray-600">Events Today</span>
-                          <span className="font-medium">{count}</span>
-                        </div>
-                        <div className="flex justify-between text-sm">
-                          <span className="text-gray-600">Status</span>
-                          <span className="text-green-600 font-medium">Online</span>
-                        </div>
-                        <div className="flex justify-between text-sm">
-                          <span className="text-gray-600">Last Activity</span>
-                          <span className="text-gray-500">2 min ago</span>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
 
 // Main App Component
 const LabAutomationApp: React.FC = () => {
@@ -588,15 +256,10 @@ const LabAutomationApp: React.FC = () => {
     setCurrentView('home');
   };
 
-  const handleLogParsed = (data: ParsedLogData) => {
-    setLogData(data);
-    setCurrentView('vworks');
-  };
-
   return (
     <div className="app">
       {currentView === 'home' && (
-        <HomePage onInstrumentSelect={handleInstrumentSelect} onLogParsed={handleLogParsed} />
+        <HomePage onInstrumentSelect={handleInstrumentSelect} />
       )}
       {currentView === 'vworks' && (
         <VWorksDashboard onBack={handleBackToHome} />

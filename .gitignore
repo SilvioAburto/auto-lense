@@ -11,6 +11,9 @@ src-tauri/target/
 dist/
 build/
 
+# C# Backend executable (copied for bundling)
+AutoLense.exe
+
 # Environment files
 .env
 .env.local
