@@ -1,43 +1,19 @@
 VWorks Lab Automation Log Analysis Report
 ===================================================
-Generated: 2025-07-28 22:38:38
-Total Events: 6058
-Total Errors: 624
+Generated: 2025-07-28 22:32:39
+Total Events: 3415
+Total Errors: 520
+Total Warnings: 0
 
 ERROR SUMMARY:
 -------------------------------
-[19:35:53]  - Error library: The error library file path is empty.
-[19:35:54] ErrorLibrary - Dll loaded:    ErrorLibrary.dll    13.1.0
-[09:06:31]  - Error library: The error library file path is empty.
-[09:06:31] ErrorLibrary - Dll loaded:    ErrorLibrary.dll    2.0.1
-[18:45:52]  - Error library: The error library file path is empty.
-[18:45:52] ErrorLibrary - Dll loaded:    ErrorLibrary.dll    2.0.1
-[15:28:35]  - Error library: The error library file path is empty.
-[15:28:35] ErrorLibrary - Dll loaded:    ErrorLibrary.dll    2.0.1
 [11:28:30] Molecular Devices SoftMax Pro Reader - 1 - Profile "" is invalid.
-[11:28:30]  - Compile complete with 1 error and 3 warnings
-[11:28:50]  - Error library: Protocol started using error library file: ""
-[11:28:50]  - script:ReferenceError: console is not defined
 [11:28:54] Molecular Devices SoftMax Pro Reader - 1 - Profile "" is invalid.
-[11:28:54]  - Compile complete with 1 error and 3 warnings
-[11:29:03]  - Error library: Protocol started using error library file: ""
-[11:29:04]  - script:ReferenceError: console is not defined
 [11:31:47] Molecular Devices SoftMax Pro Reader - 1 - Profile "" is invalid.
-[11:31:47]  - Compile complete with 1 error and 3 warnings
-[11:32:05]  - Error library: Protocol started using error library file: ""
 [11:33:28] Molecular Devices SoftMax Pro Reader - 1 - Profile "" is invalid.
-[11:33:28]  - Compile complete with 1 error and 3 warnings
-[11:33:33]  - Error library: Protocol started using error library file: ""
-[11:33:33]  - script:3:ReferenceError: allAudio is not defined
-[11:34:02]  - script:4:SyntaxError: missing ) after argument list:
 [11:34:02] Molecular Devices SoftMax Pro Reader - 1 - Profile "" is invalid.
 [11:34:02]  - Script syntax error
-[11:34:02]  - Compile complete with 2 errors and 3 warnings
-[11:34:08]  - Error library: Protocol started using error library file: ""
-[11:34:08]  - script:4:SyntaxError: missing ) after argument list:
 [11:34:18] Molecular Devices SoftMax Pro Reader - 1 - Profile "" is invalid.
-[11:34:18]  - Compile complete with 1 error and 3 warnings
-[11:34:23]  - Error library: Protocol started using error library file: ""
 [19:04:12] Agilent Vertical Pipetting Station - 1 - Profile "" is invalid.
 [19:04:12] Agilent Vertical Pipetting Station - 2 - Profile "" is invalid.
 [19:04:12] Molecular Devices SoftMax Pro Reader - 1 - Profile "" is invalid.
@@ -55,8 +31,6 @@ ERROR SUMMARY:
 [19:04:12] Agilent Vertical Pipetting Station - 1 - "Dispense" cannot be used with lidded plates
 [19:04:12] Agilent Vertical Pipetting Station - 1 - No location specified for Tips Off task
 [19:04:12] Agilent Vertical Pipetting Station - 1 - No plate or location specified for parameter "Location, plate".
-[19:04:13]  - Compile complete with 17 errors and 33 warnings
-[19:04:32]  - Error library: Protocol started using error library file: ""
 [19:04:34]  - Deadlock detected
 [19:04:34]  - Database is not connected!
 [19:04:34]  - Deadlock detected
@@ -80,7 +54,6 @@ ERROR SUMMARY:
 [19:06:32] Agilent Vertical Pipetting Station - 1 - "Dispense" cannot be used with lidded plates
 [19:06:32] Agilent Vertical Pipetting Station - 1 - No location specified for Tips Off task
 [19:06:32] Agilent Vertical Pipetting Station - 1 - No plate or location specified for parameter "Location, plate".
-[19:06:33]  - Compile complete with 17 errors and 33 warnings
 [10:14:24] Agilent Vertical Pipetting Station - 1 - Profile "" is invalid.
 [10:14:24] Agilent Vertical Pipetting Station - 2 - Profile "" is invalid.
 [10:14:24] Molecular Devices SoftMax Pro Reader - 1 - Profile "" is invalid.
@@ -98,7 +71,6 @@ ERROR SUMMARY:
 [10:14:25] Agilent Vertical Pipetting Station - 1 - "Dispense" cannot be used with lidded plates
 [10:14:25] Agilent Vertical Pipetting Station - 1 - No location specified for Tips Off task
 [10:14:25] Agilent Vertical Pipetting Station - 1 - No plate or location specified for parameter "Location, plate".
-[10:14:25]  - Compile complete with 17 errors and 33 warnings
 [10:15:33] Agilent Vertical Pipetting Station - 1 - Profile "" is invalid.
 [10:15:33] Agilent Vertical Pipetting Station - 2 - Profile "" is invalid.
 [10:15:33] Molecular Devices SoftMax Pro Reader - 1 - Profile "" is invalid.
@@ -116,7 +88,6 @@ ERROR SUMMARY:
 [10:15:33] Agilent Vertical Pipetting Station - 1 - "Dispense" cannot be used with lidded plates
 [10:15:33] Agilent Vertical Pipetting Station - 1 - No location specified for Tips Off task
 [10:15:33] Agilent Vertical Pipetting Station - 1 - No plate or location specified for parameter "Location, plate".
-[10:15:34]  - Compile complete with 17 errors and 33 warnings
 [10:16:04] Agilent Vertical Pipetting Station - 1 - Profile "" is invalid.
 [10:16:04] Agilent Vertical Pipetting Station - 2 - Profile "" is invalid.
 [10:16:05] Molecular Devices SoftMax Pro Reader - 1 - Profile "" is invalid.
@@ -134,7 +105,6 @@ ERROR SUMMARY:
 [10:16:05]  - Attempting to delid labware which cannot have lids
 [10:16:05] Agilent Vertical Pipetting Station - 1 - No location specified for Tips Off task
 [10:16:05] Agilent Vertical Pipetting Station - 1 - No plate or location specified for parameter "Location, plate".
-[10:16:06]  - Compile complete with 17 errors and 33 warnings
 [19:46:11] Agilent Vertical Pipetting Station - 1 - Profile "" is invalid.
 [19:46:11] Agilent Vertical Pipetting Station - 2 - Profile "" is invalid.
 [19:46:11] Molecular Devices SoftMax Pro Reader - 1 - Profile "" is invalid.
@@ -167,7 +137,6 @@ ERROR SUMMARY:
 [19:46:12] Agilent Vertical Pipetting Station - 1 - No location specified for Wash Tips task
 [19:46:12] Agilent Vertical Pipetting Station - 1 - No plate or location specified for parameter "Location, plate".
 [19:46:12] PlateLoc - Attempt to seal labware "384 Greiner 781101 PS clr flt btm", which is not allowed to be sealed. Please check the labware database
-[19:46:13]  - Compile complete with 32 errors and 28 warnings
 [19:46:42] Agilent Vertical Pipetting Station - 1 - Profile "" is invalid.
 [19:46:42] Agilent Vertical Pipetting Station - 2 - Profile "" is invalid.
 [19:46:42] Molecular Devices SoftMax Pro Reader - 1 - Profile "" is invalid.
@@ -197,7 +166,6 @@ ERROR SUMMARY:
 [19:46:42] Agilent Vertical Pipetting Station - 1 - No location specified for Wash Tips task
 [19:46:42] Agilent Vertical Pipetting Station - 1 - No plate or location specified for parameter "Location, plate".
 [19:46:42] PlateLoc - Attempt to seal labware "384 Greiner 781101 PS clr flt btm", which is not allowed to be sealed. Please check the labware database
-[19:46:43]  - Compile complete with 29 errors and 25 warnings
 [19:52:55] Agilent Vertical Pipetting Station - 1 - Profile "" is invalid.
 [19:52:55] Agilent Vertical Pipetting Station - 2 - Profile "" is invalid.
 [19:52:55] Molecular Devices SoftMax Pro Reader - 1 - Profile "" is invalid.
@@ -223,7 +191,6 @@ ERROR SUMMARY:
 [19:52:55] Agilent Vertical Pipetting Station - 1 - No location specified for Wash Tips task
 [19:52:55] Agilent Vertical Pipetting Station - 1 - No plate or location specified for parameter "Location, plate".
 [19:52:55] PlateLoc - Attempt to seal labware "384 Greiner 781101 PS clr flt btm", which is not allowed to be sealed. Please check the labware database
-[19:52:56]  - Compile complete with 25 errors and 18 warnings
 [20:10:58] Agilent Vertical Pipetting Station - 1 - Profile "" is invalid.
 [20:10:58] Agilent Vertical Pipetting Station - 2 - Profile "" is invalid.
 [20:10:58] Molecular Devices SoftMax Pro Reader - 1 - Profile "" is invalid.
@@ -249,7 +216,6 @@ ERROR SUMMARY:
 [20:10:59] Agilent Vertical Pipetting Station - 1 - No location specified for Wash Tips task
 [20:10:59] Agilent Vertical Pipetting Station - 1 - No plate or location specified for parameter "Location, plate".
 [20:10:59] PlateLoc - Attempt to seal labware "384 Greiner 781101 PS clr flt btm", which is not allowed to be sealed. Please check the labware database
-[20:10:59]  - Compile complete with 25 errors and 18 warnings
 [20:11:49] Agilent Vertical Pipetting Station - 1 - Profile "" is invalid.
 [20:11:50] Agilent Vertical Pipetting Station - 2 - Profile "" is invalid.
 [20:11:50] Molecular Devices SoftMax Pro Reader - 1 - Profile "" is invalid.
@@ -274,7 +240,6 @@ ERROR SUMMARY:
 [20:11:50] Agilent Vertical Pipetting Station - 1 - No plate or location specified for parameter "Location, plate".
 [20:11:50] Agilent Vertical Pipetting Station - 1 - No location specified for Wash Tips task
 [20:11:50] Agilent Vertical Pipetting Station - 1 - No plate or location specified for parameter "Location, plate".
-[20:11:50]  - Compile complete with 24 errors and 18 warnings
 [22:01:58] Agilent Vertical Pipetting Station - 1 - Profile "" is invalid.
 [22:01:58] Agilent Vertical Pipetting Station - 2 - Profile "" is invalid.
 [22:01:58] Molecular Devices SoftMax Pro Reader - 1 - Profile "" is invalid.
@@ -299,7 +264,6 @@ ERROR SUMMARY:
 [22:01:59]  - No stackers allocated to "Upstack" task
 [22:01:59] Agilent Centrifuge - 1 - For "Fixed counterweight" mode, specify which bucket has static labware on the Centrifuge Process icon.
 [22:01:59] Agilent Vertical Pipetting Station - 1 - Attempt to move an unmoveable reservoir 96 Reservoir. Please use <auto-select> for "Location, location" property.
-[22:01:59]  - Compile complete with 24 errors and 12 warnings
 [22:04:25] Agilent Vertical Pipetting Station - 1 - Profile "" is invalid.
 [22:04:25] Agilent Vertical Pipetting Station - 2 - Profile "" is invalid.
 [22:04:25] Molecular Devices SoftMax Pro Reader - 1 - Profile "" is invalid.
@@ -323,7 +287,6 @@ ERROR SUMMARY:
 [22:04:26] Agilent Vertical Pipetting Station - 1 - No plate or location specified for parameter "Location, plate".
 [22:04:26] Agilent Vertical Pipetting Station - 1 - No location specified for Wash Tips task
 [22:04:26] Agilent Vertical Pipetting Station - 1 - No plate or location specified for parameter "Location, plate".
-[22:04:26]  - Compile complete with 23 errors and 6 warnings
 [22:05:48]  - Agilent Labware Stacker - 5 must be accessible by at least 1 robot
 [22:05:48]  - Attempting to place a plate to "Microscan Barcode Reader - 1" on "stage" which is not accessible by any robot
 [22:05:48]  - Attempting to place a plate to "Agilent Vertical Pipetting Station - 1" on "Shelf 1" which is not accessible by any robot
@@ -344,7 +307,6 @@ ERROR SUMMARY:
 [22:05:48] Agilent Vertical Pipetting Station - 1 - No plate or location specified for parameter "Location, plate".
 [22:05:48] Agilent Vertical Pipetting Station - 1 - No location specified for Wash Tips task
 [22:05:48] Agilent Vertical Pipetting Station - 1 - No plate or location specified for parameter "Location, plate".
-[22:05:49]  - Compile complete with 20 errors and 3 warnings
 [22:07:10]  - Agilent Labware Stacker - 5 must be accessible by at least 1 robot
 [22:07:10]  - Attempting to place a plate to "Microscan Barcode Reader - 1" on "stage" which is not accessible by any robot
 [22:07:11]  - Attempting to place a plate to "Agilent Vertical Pipetting Station - 1" on "Shelf 1" which is not accessible by any robot
@@ -366,7 +328,6 @@ ERROR SUMMARY:
 [22:07:11] Agilent Vertical Pipetting Station - 1 - No plate or location specified for parameter "Location, plate".
 [22:07:11] Agilent Vertical Pipetting Station - 1 - No location specified for Tips Off task
 [22:07:11] Agilent Vertical Pipetting Station - 1 - No plate or location specified for parameter "Location, plate".
-[22:07:11]  - Compile complete with 21 errors and 0 warnings
 [22:09:08]  - Attempting to place a plate to "Microscan Barcode Reader - 1" on "stage" which is not accessible by any robot
 [22:09:08]  - Attempting to place a plate to "Agilent Vertical Pipetting Station - 1" on "Shelf 1" which is not accessible by any robot
 [22:09:08]  - Attempting to place a plate to "Molecular Devices SoftMax Pro Reader - 1" on "Stage" which is not accessible by any robot
@@ -386,7 +347,6 @@ ERROR SUMMARY:
 [22:09:09] Agilent Vertical Pipetting Station - 1 - No plate or location specified for parameter "Location, plate".
 [22:09:09] Agilent Vertical Pipetting Station - 1 - No location specified for Tips Off task
 [22:09:09] Agilent Vertical Pipetting Station - 1 - No plate or location specified for parameter "Location, plate".
-[22:09:09]  - Compile complete with 19 errors and 0 warnings
 [22:10:51]  - Attempting to place a plate to "Microscan Barcode Reader - 1" on "stage" which is not accessible by any robot
 [22:10:51]  - Attempting to place a plate to "Agilent Vertical Pipetting Station - 1" on "Shelf 1" which is not accessible by any robot
 [22:10:51]  - Attempting to place a plate to "Microscan Barcode Reader - 1" on "stage" which is not accessible by any robot
@@ -403,7 +363,6 @@ ERROR SUMMARY:
 [22:10:51] Agilent Vertical Pipetting Station - 1 - No plate or location specified for parameter "Location, plate".
 [22:10:51] Agilent Vertical Pipetting Station - 1 - No location specified for Tips Off task
 [22:10:51] Agilent Vertical Pipetting Station - 1 - No plate or location specified for parameter "Location, plate".
-[22:10:51]  - Compile complete with 16 errors and 0 warnings
 [22:13:02]  - Attempting to place a plate to "Microscan Barcode Reader - 1" on "stage" which is not accessible by any robot
 [22:13:02]  - Cannot place to a location that another process uses to introduce plates into the system (TIPS)
 [22:13:02]  - Attempting to place a plate to "Microscan Barcode Reader - 1" on "stage" which is not accessible by any robot
@@ -418,7 +377,6 @@ ERROR SUMMARY:
 [22:13:03] Agilent Vertical Pipetting Station - 1 - No plate or location specified for parameter "Location, plate".
 [22:13:03] Agilent Vertical Pipetting Station - 1 - No location specified for Tips Off task
 [22:13:03] Agilent Vertical Pipetting Station - 1 - No plate or location specified for parameter "Location, plate".
-[22:13:03]  - Compile complete with 14 errors and 0 warnings
 [22:14:19]  - Attempting to place a plate to "Thermo Multidrop - 1" on "Stage" which is not accessible by any robot
 [22:14:19] Multidrop - The dispense volume is higher than the well volume of the labware
 [22:14:19]  - No stackers allocated to "Upstack" task
@@ -430,7 +388,6 @@ ERROR SUMMARY:
 [22:14:19] Agilent Vertical Pipetting Station - 1 - No plate or location specified for parameter "Location, plate".
 [22:14:19] Agilent Vertical Pipetting Station - 1 - No location specified for Tips Off task
 [22:14:19] Agilent Vertical Pipetting Station - 1 - No plate or location specified for parameter "Location, plate".
-[22:14:19]  - Compile complete with 11 errors and 0 warnings
 [22:16:06]  - No stackers allocated to "Upstack" task
 [22:16:06] Agilent Centrifuge - 1 - For "Fixed counterweight" mode, specify which bucket has static labware on the Centrifuge Process icon.
 [22:16:06] Agilent Vertical Pipetting Station - 1 - Attempt to move an unmoveable reservoir 96 Reservoir. Please use <auto-select> for "Location, location" property.
@@ -440,7 +397,6 @@ ERROR SUMMARY:
 [22:16:06] Agilent Vertical Pipetting Station - 1 - No plate or location specified for parameter "Location, plate".
 [22:16:06] Agilent Vertical Pipetting Station - 1 - No location specified for Tips Off task
 [22:16:06] Agilent Vertical Pipetting Station - 1 - No plate or location specified for parameter "Location, plate".
-[22:16:06]  - Compile complete with 9 errors and 0 warnings
 [22:18:25]  - No stackers allocated to "Upstack" task
 [22:18:25] Agilent Vertical Pipetting Station - 1 - Attempt to move an unmoveable reservoir 96 Reservoir. Please use <auto-select> for "Location, location" property.
 [22:18:26] Agilent Vertical Pipetting Station - 1 - No location specified for Mix [Dual Height] task
@@ -449,7 +405,6 @@ ERROR SUMMARY:
 [22:18:26] Agilent Vertical Pipetting Station - 1 - No plate or location specified for parameter "Location, plate".
 [22:18:26] Agilent Vertical Pipetting Station - 1 - No location specified for Tips Off task
 [22:18:26] Agilent Vertical Pipetting Station - 1 - No plate or location specified for parameter "Location, plate".
-[22:18:26]  - Compile complete with 8 errors and 1 warning
 [22:19:14] Agilent Vertical Pipetting Station - 1 - Attempt to move an unmoveable reservoir 96 Reservoir. Please use <auto-select> for "Location, location" property.
 [22:19:14] Agilent Vertical Pipetting Station - 1 - No location specified for Mix [Dual Height] task
 [22:19:14] Agilent Vertical Pipetting Station - 1 - No plate or location specified for parameter "Location, plate".
@@ -457,7 +412,6 @@ ERROR SUMMARY:
 [22:19:14] Agilent Vertical Pipetting Station - 1 - No plate or location specified for parameter "Location, plate".
 [22:19:14] Agilent Vertical Pipetting Station - 1 - No location specified for Tips Off task
 [22:19:14] Agilent Vertical Pipetting Station - 1 - No plate or location specified for parameter "Location, plate".
-[22:19:14]  - Compile complete with 7 errors and 1 warning
 [22:20:16] Agilent Vertical Pipetting Station - 1 - Attempt to move an unmoveable reservoir 96 Reservoir. Please use <auto-select> for "Location, location" property.
 [22:20:16] Agilent Vertical Pipetting Station - 1 - No location specified for Mix [Dual Height] task
 [22:20:16] Agilent Vertical Pipetting Station - 1 - No plate or location specified for parameter "Location, plate".
@@ -465,7 +419,6 @@ ERROR SUMMARY:
 [22:20:17] Agilent Vertical Pipetting Station - 1 - No plate or location specified for parameter "Location, plate".
 [22:20:17] Agilent Vertical Pipetting Station - 1 - No plate or location specified for parameter "Location, plate".
 [22:20:17] Agilent Vertical Pipetting Station - 1 - Tips off operation is being performed in a labware type that is not a tipbox or tip trash.
-[22:20:17]  - Compile complete with 7 errors and 1 warning
 [22:21:54] Agilent Vertical Pipetting Station - 1 - Attempt to move an unmoveable reservoir 96 Reservoir. Please use <auto-select> for "Location, location" property.
 [22:21:54] Agilent Vertical Pipetting Station - 1 - No location specified for Mix [Dual Height] task
 [22:21:54] Agilent Vertical Pipetting Station - 1 - No plate or location specified for parameter "Location, plate".
@@ -473,21 +426,18 @@ ERROR SUMMARY:
 [22:21:54] Agilent Vertical Pipetting Station - 1 - No plate or location specified for parameter "Location, plate".
 [22:21:54] Agilent Vertical Pipetting Station - 1 - No plate or location specified for parameter "Location, plate".
 [22:21:54] Agilent Vertical Pipetting Station - 1 - Tips off operation is being performed in a labware type that is not a tipbox or tip trash.
-[22:21:55]  - Compile complete with 7 errors and 2 warnings
 [22:22:27] Agilent Vertical Pipetting Station - 1 - Attempt to move an unmoveable reservoir 96 Reservoir. Please use <auto-select> for "Location, location" property.
 [22:22:27] Agilent Vertical Pipetting Station - 1 - No plate or location specified for parameter "Location, plate".
 [22:22:27] Agilent Vertical Pipetting Station - 1 - No location specified for Wash Tips task
 [22:22:27] Agilent Vertical Pipetting Station - 1 - No plate or location specified for parameter "Location, plate".
 [22:22:27] Agilent Vertical Pipetting Station - 1 - No plate or location specified for parameter "Location, plate".
 [22:22:27] Agilent Vertical Pipetting Station - 1 - Tips off operation is being performed in a labware type that is not a tipbox or tip trash.
-[22:22:27]  - Compile complete with 6 errors and 2 warnings
 [22:23:03] Agilent Vertical Pipetting Station - 1 - Tipbox may only be placed at shelves 7 or 8.  There is one currently placed at Shelf 4.
 [22:23:03] Agilent Vertical Pipetting Station - 1 - Attempt to move an unmoveable reservoir 96 Reservoir. Please use <auto-select> for "Location, location" property.
 [22:23:03] Agilent Vertical Pipetting Station - 1 - No plate or location specified for parameter "Location, plate".
 [22:23:03] Agilent Vertical Pipetting Station - 1 - No location specified for Wash Tips task
 [22:23:03] Agilent Vertical Pipetting Station - 1 - No plate or location specified for parameter "Location, plate".
 [22:23:03] Agilent Vertical Pipetting Station - 1 - No plate or location specified for parameter "Location, plate".
-[22:23:03]  - Compile complete with 6 errors and 2 warnings
 [22:23:46] Agilent Vertical Pipetting Station - 1 - Tipbox may only be placed at shelves 7 or 8.  There is one currently placed at Shelf 4.
 [22:23:46] Agilent Vertical Pipetting Station - 1 - Attempt to move an unmoveable reservoir 96 Reservoir. Please use <auto-select> for "Location, location" property.
 [22:23:46] Agilent Vertical Pipetting Station - 1 - No plate or location specified for parameter "Location, plate".
@@ -495,52 +445,42 @@ ERROR SUMMARY:
 [22:23:46] Agilent Vertical Pipetting Station - 1 - Cannot run Wash Tips task without pumps configured on the device
 [22:23:46] Agilent Vertical Pipetting Station - 1 - No plate or location specified for parameter "Location, plate".
 [22:23:46] Agilent Vertical Pipetting Station - 1 - No plate or location specified for parameter "Location, plate".
-[22:23:47]  - Compile complete with 7 errors and 2 warnings
 [22:25:23] Agilent Vertical Pipetting Station - 1 - Tipbox may only be placed at shelves 7 or 8.  There is one currently placed at Shelf 4.
 [22:25:23] Agilent Vertical Pipetting Station - 1 - Attempt to move an unmoveable reservoir 96 Reservoir. Please use <auto-select> for "Location, location" property.
 [22:25:23] Agilent Vertical Pipetting Station - 1 - Autofill Shelf accessory not found at specified location (Shelf 2)
 [22:25:23] Agilent Vertical Pipetting Station - 1 - Cannot run Wash Tips task without pumps configured on the device
 [22:25:23] Agilent Vertical Pipetting Station - 1 - No plate or location specified for parameter "Location, plate".
-[22:25:23]  - Compile complete with 5 errors and 2 warnings
 [22:25:47] Agilent Vertical Pipetting Station - 1 - Tipbox may only be placed at shelves 7 or 8.  There is one currently placed at Shelf 4.
 [22:25:47] Agilent Vertical Pipetting Station - 1 - Autofill Shelf accessory not found at specified location (Shelf 2)
 [22:25:47] Agilent Vertical Pipetting Station - 1 - Cannot run Wash Tips task without pumps configured on the device
 [22:25:47] Agilent Vertical Pipetting Station - 1 - No plate or location specified for parameter "Location, plate".
-[22:25:47]  - Compile complete with 4 errors and 2 warnings
 [22:26:44] Agilent Vertical Pipetting Station - 1 - Autofill Shelf accessory not found at specified location (Shelf 2)
 [22:26:44] Agilent Vertical Pipetting Station - 1 - Cannot run Wash Tips task without pumps configured on the device
 [22:26:44] Agilent Vertical Pipetting Station - 1 - No plate or location specified for parameter "Location, plate".
 [22:26:44] Agilent Vertical Pipetting Station - 1 - No plate or location specified for parameter "Location, plate".
-[22:26:45]  - Compile complete with 4 errors and 2 warnings
 [22:34:29]  - Plate "SAMPLE" and configured labware plate "plate - 1" are at the same location
 [22:34:29]  - Cannot downstack to a location used by managed labware (plate - 1)
 [22:34:29] Agilent Vertical Pipetting Station - 1 - Autofill Shelf accessory not found at specified location (Shelf 2)
 [22:34:29] Agilent Vertical Pipetting Station - 1 - Cannot run Wash Tips task without pumps configured on the device
 [22:34:29] Agilent Vertical Pipetting Station - 1 - No plate or location specified for parameter "Location, plate".
 [22:34:29] Agilent Vertical Pipetting Station - 1 - No plate or location specified for parameter "Location, plate".
-[22:34:29]  - Compile complete with 6 errors and 3 warnings
 [22:37:17] Agilent Vertical Pipetting Station - 1 - Could not find  in labware database
 [22:37:17] Agilent Vertical Pipetting Station - 1 - No plate or location specified for parameter "Location, plate".
 [22:37:17] Agilent Vertical Pipetting Station - 1 - Autofill Shelf accessory not found at specified location (Shelf 4)
 [22:37:17] Agilent Vertical Pipetting Station - 1 - Cannot run Wash Tips task without pumps configured on the device
 [22:37:17] Agilent Vertical Pipetting Station - 1 - No plate or location specified for parameter "Location, plate".
-[22:37:17]  - Compile complete with 5 errors and 6 warnings
 [22:37:59] Agilent Vertical Pipetting Station - 1 - Aspirated volume of 192 �L exceeds tip capacity of 60 �L.
 [22:37:59] Agilent Vertical Pipetting Station - 1 - Aspirated volume of 200 �L exceeds tip capacity of 60 �L.
 [22:37:59] Agilent Vertical Pipetting Station - 1 - Autofill Shelf accessory not found at specified location (Shelf 4)
 [22:37:59] Agilent Vertical Pipetting Station - 1 - Cannot run Wash Tips task without pumps configured on the device
 [22:37:59] Agilent Vertical Pipetting Station - 1 - No plate or location specified for parameter "Location, plate".
-[22:37:59]  - Compile complete with 5 errors and 3 warnings
 [22:38:51] Agilent Vertical Pipetting Station - 1 - Autofill Shelf accessory not found at specified location (Shelf 4)
 [22:38:51] Agilent Vertical Pipetting Station - 1 - Cannot run Wash Tips task without pumps configured on the device
 [22:38:51] Agilent Vertical Pipetting Station - 1 - No plate or location specified for parameter "Location, plate".
-[22:38:52]  - Compile complete with 3 errors and 3 warnings
 [22:39:43] Agilent Vertical Pipetting Station - 1 - Autofill Shelf accessory not found at specified location (Shelf 4)
 [22:39:43] Agilent Vertical Pipetting Station - 1 - Cannot run Wash Tips task without pumps configured on the device
-[22:39:43]  - Compile complete with 2 errors and 2 warnings
 [10:21:04] Agilent Vertical Pipetting Station - 1 - Autofill Shelf accessory not found at specified location (Shelf 4)
 [10:21:04] Agilent Vertical Pipetting Station - 1 - Cannot run Wash Tips task without pumps configured on the device
-[10:21:04]  - Compile complete with 2 errors and 3 warnings
 [10:22:39]  - Database is not connected!
 [10:22:39]  - No device selected
 [10:22:39]  - Database is not connected!
@@ -550,18 +490,14 @@ ERROR SUMMARY:
 [10:22:39]  - Database is not connected!
 [10:22:39]  - Attempting to delid labware which cannot have lids
 [10:22:39]  - Database is not connected!
-[10:22:39]  - Compile complete with 9 errors and 22 warnings
 [10:25:03] Agilent Vertical Pipetting Station - 1 - Autofill Shelf accessory not found at specified location (Shelf 4)
 [10:25:03] Agilent Vertical Pipetting Station - 1 - Cannot run Wash Tips task without pumps configured on the device
 [10:25:03] Agilent Vertical Pipetting Station - 1 - No plate or location specified for parameter "Location, plate".
-[10:25:03]  - Compile complete with 3 errors and 3 warnings
 [10:29:20] Agilent Vertical Pipetting Station - 1 - Autofill Shelf accessory not found at specified location (Shelf 4)
 [10:29:20] Agilent Vertical Pipetting Station - 1 - Cannot run Wash Tips task without pumps configured on the device
 [10:29:20] Agilent Vertical Pipetting Station - 1 - No plate or location specified for parameter "Location, plate".
-[10:29:20]  - Compile complete with 3 errors and 3 warnings
 [10:30:04] Agilent Vertical Pipetting Station - 1 - No location specified for Wash Tips task
 [10:30:04] Agilent Vertical Pipetting Station - 1 - No plate or location specified for parameter "Location, plate".
-[10:30:04]  - Compile complete with 2 errors and 3 warnings
 [10:37:05]  - Database is not connected!
 [10:37:05]  - No device selected
 [10:37:05]  - Database is not connected!
@@ -571,7 +507,6 @@ ERROR SUMMARY:
 [10:37:06]  - Database is not connected!
 [10:37:06]  - Attempting to delid labware which cannot have lids
 [10:37:06]  - Database is not connected!
-[10:37:06]  - Compile complete with 9 errors and 22 warnings
 [10:43:53]  - Database is not connected!
 [10:43:53]  - Database is not connected!
 [10:43:53]  - Database is not connected!
@@ -580,7 +515,6 @@ ERROR SUMMARY:
 [10:43:53]  - Database is not connected!
 [10:43:53]  - Attempting to delid labware which cannot have lids
 [10:43:53]  - Database is not connected!
-[10:43:54]  - Compile complete with 8 errors and 23 warnings
 [10:47:08]  - Database is not connected!
 [10:47:08]  - Database is not connected!
 [10:47:08]  - Database is not connected!
@@ -588,355 +522,53 @@ ERROR SUMMARY:
 [10:47:08]  - Database is not connected!
 [10:47:08]  - Database is not connected!
 [10:47:08]  - Database is not connected!
-[10:47:08]  - Compile complete with 7 errors and 23 warnings
 [10:52:01] Agilent Vertical Pipetting Station - 1 - No location specified for Wash Tips task
 [10:52:01] Agilent Vertical Pipetting Station - 1 - No plate or location specified for parameter "Location, plate".
-[10:52:01]  - Compile complete with 2 errors and 3 warnings
-[11:01:00]  - Compile complete with 0 errors and 2 warnings
-[11:02:40]  - Compile complete with 0 errors and 2 warnings
-[11:03:18]  - Error library: Protocol started using error library file: ""
-[11:03:19] Agilent Labware Stacker - 1 - The stack is empty
-[11:03:19] Agilent Labware Stacker - 5 - The stack is empty
 [11:03:25]  - Deadlock detected
 [11:03:25]  - None of the available destination locations are reachable
-[11:08:56]  - Compile complete with 0 errors and 2 warnings
-[11:09:04]  - Error library: Protocol started using error library file: ""
-[11:09:05] Agilent Labware Stacker - 1 - The stack is empty
-[11:09:11] Agilent Labware Stacker - 1 - The stack is empty
-[11:09:18] Agilent Labware Stacker - 1 - The stack is empty
-[11:09:24] Agilent Labware Stacker - 1 - The stack is empty
-[11:09:31] Agilent Labware Stacker - 1 - The stack is empty
-[11:09:37] Agilent Labware Stacker - 1 - The stack is empty
-[11:09:44] Agilent Labware Stacker - 1 - The stack is empty
-[11:09:51] Agilent Labware Stacker - 1 - The stack is empty
-[11:09:57] Agilent Labware Stacker - 1 - The stack is empty
-[11:10:04] Agilent Labware Stacker - 1 - The stack is empty
-[11:10:04] Agilent Labware Stacker - 5 - The stack is empty
 [14:09:23] SoftMax Reader - Protocol file name can't be empty
-[14:09:23]  - Compile complete with 1 error and 1 warning
-[11:43:14]  - Error library: The error library file path is empty.
-[11:43:14] ErrorLibrary - Dll loaded:    ErrorLibrary.dll    2.0.1
-[11:43:41]  - administrator login failed
-[11:37:57]  - Error library: The error library file path is empty.
-[11:37:57] ErrorLibrary - Dll loaded:    ErrorLibrary.dll    2.0.1
-[11:38:16]  - administrator login failed
-[11:01:01]  - Error library: The error library file path is empty.
-[11:01:01] ErrorLibrary - Dll loaded:    ErrorLibrary.dll    2.0.1
-[11:02:30]  - a login failed
-[11:15:33]  - administrator login failed
-[11:19:22]  - a login failed
-[11:19:25]  - ortiz login failed
-[11:19:27]  - admin login failed
-[11:19:32]  - administrator login failed
-[11:35:05]  - administrator login failed
-[11:37:16]  - administrator login failed
 
 INSTRUMENT ACTIVITY:
 -------------------------------
-Agilent Vertical Pipetting Station - 1: 490 events
-Agilent Linear Translator - 1: 327 events
-Q Instruments BioShaker - 1: 171 events
+Agilent Vertical Pipetting Station - 1: 472 events
+Agilent Linear Translator - 1: 319 events
+Q Instruments BioShaker - 1: 161 events
 FlexDrop: 99 events
-Microscan Barcode Reader - 1: 99 events
-Agilent PlateLoc - 1: 87 events
-Agilent Centrifuge - 1: 83 events
-Nexus XPeel - 1: 75 events
-Molecular Devices SoftMax Pro Reader - 1: 68 events
-Agilent Labware Stacker - 1: 67 events
+Microscan Barcode Reader - 1: 94 events
+Agilent PlateLoc - 1: 77 events
+Agilent Centrifuge - 1: 69 events
+Nexus XPeel - 1: 66 events
 2: 60 events
-Thermo Multidrop - 1: 56 events
-Agilent Vertical Pipetting Station - 2: 40 events
-Agilent Labware Stacker - 5: 36 events
-Agilent Labware Stacker - 2: 34 events
-Waste Bin - 1: 26 events
-Agilent BenchCel - 1: 22 events
-Agilent Microplate Labeler - 1: 21 events
-Agilent Plate Hub Carousel - 1: 19 events
-PerkinElmer FlexDrop - 1: 15 events
+Molecular Devices SoftMax Pro Reader - 1: 58 events
+Agilent Labware Stacker - 1: 54 events
+Thermo Multidrop - 1: 44 events
+Agilent Labware Stacker - 5: 31 events
+Agilent Labware Stacker - 2: 28 events
+Agilent Vertical Pipetting Station - 2: 24 events
+Waste Bin - 1: 22 events
+Agilent BenchCel - 1: 15 events
+PerkinElmer FlexDrop - 1: 13 events
 Multidrop: 13 events
-Agilent Labware Stacker - 3: 12 events
-Cavro Pump Network - 1: 12 events
-Agilent BenchBot Robot - 1: 11 events
-Labcyte Echo 550 - 1: 11 events
-Agilent Lid Hotel Station - 1: 11 events
-Keyence Barcode Reader - 1: 11 events
-DPC MicroMix 5 - 1: 11 events
-Thermo Multiskan Ascent - 1: 11 events
-Agilent Centrifuge - 2: 11 events
-Agilent BenchBot Robot: 10 events
-Agilent BenchCel: 10 events
-Agilent Centrifuge: 10 events
-Agilent Microplate Labeler: 10 events
-Agilent Phantom Stacker: 10 events
-Agilent PlateLoc: 10 events
-Agilent Labware Stacker: 10 events
-Agilent Vertical Pipetting Station: 10 events
-Plate Pad, Standard: 10 events
-Agilent Labware Stacker - 4: 10 events
-Waste Bin: 9 events
+Agilent Microplate Labeler - 1: 11 events
+Agilent Plate Hub Carousel - 1: 11 events
+Agilent BenchBot Robot - 1: 9 events
+Agilent Lid Hotel Station - 1: 9 events
+DPC MicroMix 5 - 1: 9 events
+Keyence Barcode Reader - 1: 9 events
+Labcyte Echo 550 - 1: 9 events
+Thermo Multiskan Ascent - 1: 9 events
 Thermo Labsystems Multiskan Ascent Reader: 9 events
-Agilent Labware Stacker - 6: 9 events
-Agilent Bravo: 8 events
-Microscan Barcode Reader: 8 events
-Agilent Lid Hotel Station: 8 events
-Agilent Linear Translator: 8 events
-Agilent Plate Hub Carousel: 8 events
-Agilent Vacuum Delid Station: 8 events
-Keyence Barcode Reader: 8 events
-Labcyte Echo 550: 8 events
-Molecular Devices SoftMax Pro Reader: 8 events
-Nexus XPeel: 8 events
-Q Instruments BioShaker: 8 events
-Thermo Multidrop: 8 events
-AccessoriesWizard: 7 events
-AccessoryManager: 7 events
-AgilentBenchBotController: 7 events
-ArgonShelfAccessoryDriver: 7 events
-ContextHelp: 7 events
-DDRStringTable: 7 events
-DeviceEnumerator: 7 events
-ErrorLibrary: 7 events
-GuidanceDiscovery: 7 events
-Host: 7 events
-ImportExport: 7 events
-InhecoMTCdll: 7 events
-InhecoShakeandHeatAccessoryDriver: 7 events
-IWorksAccessory: 7 events
-js32: 7 events
-LabelDesigner: 7 events
-LabelerHardware: 7 events
-libnspr4: 7 events
-LidHotelAccessoryDriver: 7 events
-lm: 7 events
-Loader: 7 events
-MagBeadAccessoryDriver: 7 events
-MetaDataPropertyManager: 7 events
-MTController: 7 events
-NestableTipBoxInsertAccessoryDriver: 7 events
-ObjectDatabase: 7 events
-ObjectManager: 7 events
-PicServoExtDll: 7 events
-PipetteHeadMode: 7 events
-PipetteTechniqueEditor: 7 events
-PlateMapDatabase: 7 events
-ProfileChangeLog: 7 events
-ProfileManager: 7 events
-ProfUisProfileManager: 7 events
-SciLexer: 7 events
-SerialDilution: 7 events
-TeleshakeAccessoryDriver: 7 events
-TipPosition: 7 events
-TipTracking: 7 events
-tmlcomm: 7 events
-TML_lib: 7 events
-Toolbox: 7 events
-V11DeviceDriver: 7 events
-V11FieldComposer: 7 events
-V11GanttChart: 7 events
-V11Labware: 7 events
-V11Liquids: 7 events
-V11Migrator: 7 events
-V11PipettingFormatWizard: 7 events
-V11PumpAccessoryDriver: 7 events
-V11SharedClasses: 7 events
-V11WellSelect: 7 events
-V11WellVolumeVisualizer: 7 events
-V11Wizard: 7 events
-VacuumFiltrationAccessoryDriver: 7 events
-VacuumLocatingStationDriver: 7 events
-VacuumShelfAccessoryDriver: 7 events
-VHookInterface: 7 events
-VWorks4COM: 7 events
-VWorks4Defs: 7 events
-VWorks4DeviceManager: 7 events
-VWorks4EmailDaemon: 7 events
-VWorks4FormManager: 7 events
-VWorks4GUI: 7 events
-VWorks4GUIFramework: 7 events
-VWorks4Hooks: 7 events
-VWorks4LabelDesigner: 7 events
-VWorks4Logger: 7 events
-VWorks4MacroLibrary: 7 events
-VWorks4Progress: 7 events
-VWorks4ProtocolEditor: 7 events
-VWorks4Security: 7 events
-VWorks4UserDatabase: 7 events
-VWorks4UserManager: 7 events
-WeighPadAccessoryDriver: 7 events
-Agilent ACU: 7 events
-Agilent Centrifuge Loader: 7 events
-Agilent Direct Drive Robot: 7 events
-Agilent Generic I/O Module: 7 events
-Agilent Generic RS-232 Device: 7 events
-Agilent Labware MiniHub: 7 events
-Agilent Phantom Robot: 7 events
-Agilent Plate Hotel: 7 events
-Cavro Pump Network: 7 events
-DPC MicroMix 5: 7 events
-Mixing Station: 7 events
-PerkinElmer FlexDrop: 7 events
-Thermo Multiskan Ascent: 7 events
-Q Instruments BioShaker - 2: 7 events
-Mixing Station - 1: 7 events
-EchoAppHelper: 6 events
-EvaporatorAccessoryDriver: 6 events
-mfc71: 6 events
-mfc71u: 6 events
-MicroPierceInterface: 6 events
-MicroPierceWrapper: 6 events
-MicroStirInterface: 6 events
-MicroStirWrapper: 6 events
-msvcr71: 6 events
-PackardFusionRemoteConnectorOCX: 6 events
-PackardFusionRemoteControlPlugIn: 6 events
-PackardFusionRemoteControlWrapperDLL: 6 events
-ProfSkin284m: 6 events
-ProfUIS284m: 6 events
-SSIdll: 6 events
-ABgene Automated Seal Piercer 50: 6 events
-ABgene SEAL-IT 100: 6 events
-Agilent BioCel I/O Interface: 6 events
-Agilent ChemStation Autosampler: 6 events
-Agilent MassHunter Autosampler: 6 events
-Agilent Microplate Conveyor: 6 events
-Agilent Microplate Exchanger: 6 events
-Agilent Seal Piercer: 6 events
-Agilent Rotator: 6 events
-Agilent Shuttle: 6 events
-Agilent Vacuum Station: 6 events
-Agilent Weigh Pad: 6 events
-Amgen RRAPer Automated Piercer: 6 events
-Amgen Rake: 6 events
-Amgen RoboCylinder Robot: 6 events
-APC UPS: 6 events
-Asys Hitech Flexispense: 6 events
-Asys Hitech Flexispense-M: 6 events
-Asyst 3-Axis Robot: 6 events
-BMG LABTECH NEPHELOstar: 6 events
-PHERAstar: 6 events
-BMG LABTECH RUBYstar: 6 events
-Beckman BioRAPTR: 6 events
-Beckman Multimek: 6 events
-Berthold Mithras LB 940: 6 events
-BioMicroLab XL9: 6 events
-Bio-Rad CFX Manager: 6 events
-Bio-Rad DNA Engine Dyad Cycler: 6 events
-BioTek ELx405: 6 events
-BioTek Gen5 Reader: 6 events
-BioTek Liquid Handler: 6 events
-BioTek MicroFill: 6 events
-BioTek MicroFlo: 6 events
-BioTek NanoQuot: 6 events
-BioTek EL406: 6 events
-Biometra TRobot: 6 events
-Bionex Hive: 6 events
-Blueshift Bio IsoCyte: 6 events
-Caliper LabChip EZ Reader II: 6 events
-Cedrex BioCap 8/96: 6 events
-Cedrex BioCap 96: 6 events
-Cognex Camera: 6 events
-Covaris C2000: 6 events
-Covaris SonoLAB L8: 6 events
-Deerac Fluidics Equator: 6 events
-EDC ATS-100: 6 events
-Eppendorf MasterCycler: 6 events
-FluidX Xdc-96pro: 6 events
-FluidX Xsd-96: 6 events
-GE IN Cell Analyzer 1000: 6 events
-GE LEADseeker: 6 events
-Genetix QFill2: 6 events
-Gilson 223 Sample Changer: 6 events
-HJ Bioanalytik RoboPeel: 6 events
-HJ Bioanalytik RoboSeal: 6 events
-HRB MicroPierce: 6 events
-HRB MicroServe: 6 events
-HRB MicroStir: 6 events
-HRB SteriStore Incubators: 6 events
-Hamamatsu FDSS7000: 6 events
-Hamilton DeCapper: 6 events
-Hamilton Microlab STAR: 6 events
-Hamilton TubeStore: 6 events
-Hettich Rotanta Centrifuge: 6 events
-HyperTask HyperStack: 6 events
-INHECO STC/MTC Controller: 6 events
-INHECO Variomag Teleshake: 6 events
-INHECO Variomag Thermoshake: 6 events
-Inheco Incubator MP: 6 events
-Innovadyne Nanodrop Nanobuilder: 6 events
-IntelliCyt HyperCyt Autosampler: 6 events
-KBioscience Fusion Sealer: 6 events
-KBiosystems Wasp Automated Plate Sealer: 6 events
-Labcyte Latitude LX: 6 events
-LiCONiC LPX/STX/STR Incubator: 6 events
-MSD Sector Reader: 6 events
-MathWorks MATLAB: 6 events
-Microscan MS-96: 6 events
-Microsonic Hendrix SM100: 6 events
-Molecular Devices Analyst GT: 6 events
-Molecular Devices AquaMax 2000/4000: 6 events
-Molecular Devices AquaMax DW4: 6 events
-Molecular Devices FLIPR Tetra: 6 events
-Molecular Devices MetaXpress: 6 events
-Nexus Captivator: 6 events
-Nexus Universal Store: 6 events
-Omega iSeries Controller: 6 events
-Peak Robotics FIFO Q-Stacker: 6 events
-Peak Robotics KiNEDx Robot: 6 events
-Peak Robotics Static Stack: 6 events
-PerkinElmer Envision: 6 events
-PerkinElmer Fusion Reader: 6 events
-Perkin Elmer Janus: 6 events
-PerkinElmer PlateStak: 6 events
-PerkinElmer ViewLux: 6 events
-Tecan Power Washer 384: 6 events
-RTS TubeAuditor: 6 events
-REMP ACD96: 6 events
-REMP CSP 384/384-RS/96-RS: 6 events
-Roche Applied Science Cellavista: 6 events
-Roche xCELLigence RTCA-HT: 6 events
-Starlet Event Handler: 6 events
-SRU Biosystems BIND Reader: 6 events
-Staubli Robot: 6 events
-StokesBio MegaCycler: 6 events
-Symbol Technologies MiniScan: 6 events
-TTP LabTech AcumenEX3: 6 events
-TTP LabTech ComPANION: 6 events
-TTP LabTech ComPILER: 6 events
-TTP LabTech Mosquito: 6 events
-Tecan Freedom Evo: 6 events
-Tecan Reader: 6 events
-Tecan HydroSpeed Washer: 6 events
-Tecan Infinite Reader: 6 events
-Thermo CRS Carousel: 6 events
-Thermo Cytomat: 6 events
-Thermo Cytomat 44: 6 events
-Thermo Matrix WellMate: 6 events
-Union Biometrica BioSorter: 6 events
-VICI Multiport Valve: 6 events
-Vertex FRD2: 6 events
-Viaflo StatPrep: 6 events
-Ziath ZTS-A6 Barcode Scanner: 6 events
-Plate Pad, Standard - 1: 6 events
-Molecular Devices SoftMax Pro Reader - 2: 6 events
-Q Instruments BioShaker - 3: 5 events
-Q Instruments BioShaker - 4: 5 events
-Plate Pad, Standard - 2: 4 events
-Plate Pad, Standard - 3: 4 events
+Cavro Pump Network - 1: 8 events
+Agilent Labware Stacker - 3: 7 events
+Agilent Labware Stacker - 4: 7 events
+Agilent Labware Stacker - 6: 7 events
+Molecular Devices SoftMax Pro Reader - 2: 4 events
 PlateLoc: 4 events
-Agilent Bravo - 1: 2 events
-Agilent Phantom Stacker - 1: 2 events
-Agilent Microplate Labeler - 2: 2 events
-Agilent Vacuum Delid Station - 1: 2 events
-Agilent Vertical Pipetting Station - 3: 2 events
-Plate Pad, Standard - 4: 2 events
-AgilentDDRController: 1 events
-FilterPlateHolderAccessoryDriver: 1 events
-GeminiAPI: 1 events
-log4net: 1 events
-ProfSkinm-RDE: 1 events
-ProfSkinm: 1 events
-ProfUISm-RDE: 1 events
-ProfUISm: 1 events
+Mixing Station - 1: 4 events
+Agilent Centrifuge - 2: 2 events
+Q Instruments BioShaker - 2: 2 events
+Q Instruments BioShaker - 3: 2 events
+Q Instruments BioShaker - 4: 2 events
 SoftMax Reader: 1 events
 
 PROCESS SUMMARY:
@@ -996,70 +628,45 @@ Process: SAMPLE 10
   Events: 99
   Errors: 0
 
-Process: process - 1
-  Duration: 7863.8 minutes
-  Events: 76
-  Errors: 1
-
 Process: process - 1 1
   Duration: 5.5 minutes
   Events: 36
   Errors: 0
 
-Process: Centrifuge Centrifuge Process 1
-  Duration: 0.8 minutes
-  Events: 3
-  Errors: 0
-
-Process: Vertical Pipetting Station SubProcess 2
-  Duration: 0.2 minutes
-  Events: 2
-  Errors: 0
-
-Process: Destination
+Process: process - 1
   Duration: 0.0 minutes
   Events: 1
-  Errors: 0
-
-Process: startup process - 1
-  Duration: 10025.9 minutes
-  Events: 21
-  Errors: 0
-
-Process: cleanup process - 1
-  Duration: 6905.7 minutes
-  Events: 16
-  Errors: 0
-
-Process: process - 2
-  Duration: 9025.5 minutes
-  Events: 6
-  Errors: 0
-
-Process: process - 3
-  Duration: 5901.5 minutes
-  Events: 4
-  Errors: 0
+  Errors: 1
 
 Process: ASSAY
-  Duration: 7102.2 minutes
-  Events: 337
+  Duration: 6905.2 minutes
+  Events: 196
   Errors: 86
 
 Process: SAMPLE
-  Duration: 7092.8 minutes
-  Events: 218
+  Duration: 6724.9 minutes
+  Events: 131
   Errors: 129
 
 Process: TIPS
-  Duration: 6890.6 minutes
-  Events: 64
+  Duration: 6702.9 minutes
+  Events: 45
   Errors: 27
 
 Process: Vertical Pipetting Station SubProcess 4
-  Duration: 1121.0 minutes
-  Events: 30
+  Duration: 911.9 minutes
+  Events: 20
   Errors: 20
+
+Process: cleanup process - 1
+  Duration: 6702.9 minutes
+  Events: 9
+  Errors: 0
+
+Process: startup process - 1
+  Duration: 6702.9 minutes
+  Events: 9
+  Errors: 0
 
 Process: startup process - 1 1
   Duration: 0.0 minutes
@@ -1076,45 +683,15 @@ Process: TIPS 1
   Events: 3
   Errors: 1
 
-Process: ASSAY - 1
-  Duration: 0.0 minutes
-  Events: 1
-  Errors: 0
-
-Process: SAMPLE - 1
-  Duration: 0.0 minutes
-  Events: 1
-  Errors: 0
-
 Process: Centrifuge Centrifuge Process 5
-  Duration: 233.4 minutes
-  Events: 23
+  Duration: 149.9 minutes
+  Events: 18
   Errors: 18
 
 Process: Vertical Pipetting Station SubProcess 6
-  Duration: 934.9 minutes
-  Events: 233
+  Duration: 905.8 minutes
+  Events: 185
   Errors: 171
-
-Process: RESERVOIR
-  Duration: 179.9 minutes
-  Events: 9
-  Errors: 0
-
-Process: Wash Reservoir
-  Duration: 2.4 minutes
-  Events: 4
-  Errors: 0
-
-Process: plate - 1
-  Duration: 1.5 minutes
-  Events: 6
-  Errors: 0
-
-Process: IPA RESERVOIR
-  Duration: 0.0 minutes
-  Events: 1
-  Errors: 0
 
 Process: Vertical Pipetting Station SubProcess 6 1
   Duration: 5.8 minutes
@@ -1259,10 +836,5 @@ Process: Vertical Pipetting Station SubProcess 6 10
 Process: Centrifuge Centrifuge Process 5 10
   Duration: 0.0 minutes
   Events: 5
-  Errors: 0
-
-Process: startup process - 2
-  Duration: 0.0 minutes
-  Events: 1
   Errors: 0
 

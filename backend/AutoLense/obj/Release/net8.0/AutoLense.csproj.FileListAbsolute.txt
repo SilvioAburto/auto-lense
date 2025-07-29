@@ -1,0 +1,15 @@
+C:\Users\silvi\git_repos\logs-lense\backend\AutoLense\bin\Release\net8.0\AutoLense.exe
+C:\Users\silvi\git_repos\logs-lense\backend\AutoLense\bin\Release\net8.0\AutoLense.deps.json
+C:\Users\silvi\git_repos\logs-lense\backend\AutoLense\bin\Release\net8.0\AutoLense.runtimeconfig.json
+C:\Users\silvi\git_repos\logs-lense\backend\AutoLense\bin\Release\net8.0\AutoLense.dll
+C:\Users\silvi\git_repos\logs-lense\backend\AutoLense\bin\Release\net8.0\AutoLense.pdb
+C:\Users\silvi\git_repos\logs-lense\backend\AutoLense\obj\Release\net8.0\AutoLense.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\silvi\git_repos\logs-lense\backend\AutoLense\obj\Release\net8.0\AutoLense.AssemblyInfoInputs.cache
+C:\Users\silvi\git_repos\logs-lense\backend\AutoLense\obj\Release\net8.0\AutoLense.AssemblyInfo.cs
+C:\Users\silvi\git_repos\logs-lense\backend\AutoLense\obj\Release\net8.0\AutoLense.csproj.CoreCompileInputs.cache
+C:\Users\silvi\git_repos\logs-lense\backend\AutoLense\obj\Release\net8.0\AutoLense.sourcelink.json
+C:\Users\silvi\git_repos\logs-lense\backend\AutoLense\obj\Release\net8.0\AutoLense.dll
+C:\Users\silvi\git_repos\logs-lense\backend\AutoLense\obj\Release\net8.0\refint\AutoLense.dll
+C:\Users\silvi\git_repos\logs-lense\backend\AutoLense\obj\Release\net8.0\AutoLense.pdb
+C:\Users\silvi\git_repos\logs-lense\backend\AutoLense\obj\Release\net8.0\AutoLense.genruntimeconfig.cache
+C:\Users\silvi\git_repos\logs-lense\backend\AutoLense\obj\Release\net8.0\ref\AutoLense.dll

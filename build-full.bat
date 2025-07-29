@@ -1,5 +1,5 @@
 @echo off
-echo Building AutoLense Full Application...
+echo Building Full Application...
 echo.
 
 echo Step 1: Building C# Backend...
@@ -10,7 +10,7 @@ if %ERRORLEVEL% NEQ 0 (
     pause
     exit /b 1
 )
-echo C# Backend built successfully!
+echo Backend built successfully!
 echo.
 
 echo Step 2: Copying AutoLense.exe to project root...

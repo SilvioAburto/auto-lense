@@ -5,26 +5,24 @@ use std::process::Command;
 fn main() {
     // Build the C# backend first
     build_csharp_backend();
-    
     // Then build Tauri
     tauri_build::build()
 }
 
 fn build_csharp_backend() {
-    println!("cargo:rerun-if-changed=../../../backend/AutoLense/Program.cs");
-    println!("cargo:rerun-if-changed=../../../backend/AutoLense/Services/");
-    println!("cargo:rerun-if-changed=../../../backend/AutoLense/Models/");
+    println!("cargo:rerun-if-changed=../../backend/AutoLense/Program.cs");
+    println!("cargo:rerun-if-changed=../../backend/AutoLense/Services/");
+    println!("cargo:rerun-if-changed=../../backend/AutoLense/Models/");
     
     // Get the project root directory
     let manifest_dir = env::var("CARGO_MANIFEST_DIR").unwrap();
-    let project_root = Path::new(&manifest_dir).join("../../../");
+    let project_root = Path::new(&manifest_dir).join("../../");
     let backend_path = project_root.join("backend/AutoLense");
     
     if !backend_path.exists() {
         panic!("Backend directory not found at: {}", backend_path.display());
     }
     
-    // Build the C# project in Release mode for better performance
     println!("Building C# backend...");
     let build_result = Command::new("dotnet")
         .args(&["build", "--configuration", "Release"])
@@ -38,7 +36,7 @@ fn build_csharp_backend() {
                 
                 // Copy the executable to the Tauri app directory for bundling
                 let source_exe = backend_path.join("bin/Release/net8.0/AutoLense.exe");
-                let target_dir = Path::new(&manifest_dir).join("../../../");
+                let target_dir = Path::new(&manifest_dir).join("../../");
                 let target_exe = target_dir.join("AutoLense.exe");
                 
                 if source_exe.exists() {

@@ -26,6 +26,7 @@ public class VWorksLogParser : ILogParser
             throw new FileNotFoundException($"Log file not found: {filePath}");
 
         var lines = File.ReadAllLines(filePath);
+        lines = lines.Where(l => !string.IsNullOrWhiteSpace(l) && !l.Contains("INFO")).ToArray();
         return ParseLogLines(lines);
     }
 
@@ -41,6 +42,7 @@ public class VWorksLogParser : ILogParser
     {
         var events = new List<LabEvent>();
         var errors = new List<LabEvent>();
+        var warnings = new List<LabEvent>();
         var instrumentCounts = new Dictionary<string, int>();
         var processGroups = new Dictionary<string, List<LabEvent>>();
 
@@ -51,12 +53,22 @@ public class VWorksLogParser : ILogParser
                 var labEvent = ParseLogLine(line);
                 if (labEvent is null) continue;
 
+                // Skip info events (they're not in our EventType enum)
+                var eventTypeString = line.Split('\t').Length > 1 ? line.Split('\t')[1]?.Trim().ToLowerInvariant() ?? string.Empty : string.Empty;
+                if (eventTypeString == "info")
+                    continue;
+
                 events.Add(labEvent);
 
-                // Categorize errors
-                if (labEvent.IsError || labEvent.Type == EventType.Error)
+                // Categorize by event type
+                switch (labEvent.Type)
                 {
-                    errors.Add(labEvent);
+                    case EventType.Error:
+                        errors.Add(labEvent);
+                        break;
+                    case EventType.Warning:
+                        warnings.Add(labEvent);
+                        break;
                 }
 
                 // Count instrument events
@@ -92,6 +104,7 @@ public class VWorksLogParser : ILogParser
         {
             Events = events,
             Errors = errors,
+            Warnings = warnings,
             InstrumentEventCounts = instrumentCounts,
             ProcessGroups = processGroups
         };
@@ -105,7 +118,18 @@ public class VWorksLogParser : ILogParser
         if (fields.Length < 3) return null;
 
         var timestamp = DateTime.TryParse(fields[0], out var parsedTimestamp) ? parsedTimestamp : DateTime.MinValue;
-        var eventType = Enum.TryParse<EventType>(fields[1], true, out var parsedEventType) ? parsedEventType : EventType.Event;
+        
+        // Parse event type from 2nd column, default to Event if not recognized
+        var eventTypeString = fields[1]?.Trim().ToLowerInvariant() ?? string.Empty;
+        var eventType = eventTypeString switch
+        {
+            "error" => EventType.Error,
+            "warning" => EventType.Warning,
+            "event" => EventType.Event,
+            "script" => EventType.Script,
+            "info" => EventType.Event, // Treat info as regular event, will be filtered out later
+            _ => EventType.Event
+        };
 
         var instrument = fields.Length > 2 ? fields[2]?.Trim() ?? string.Empty : string.Empty;
         var location = fields.Length > 3 ? fields[3]?.Trim() ?? string.Empty : string.Empty;
@@ -117,7 +141,8 @@ public class VWorksLogParser : ILogParser
         var processId = fields.Length > 9 && int.TryParse(fields[9], out var parsedProcessId) ? parsedProcessId : 0;
 
         var isCompleted = description.StartsWith("Completed:", StringComparison.OrdinalIgnoreCase);
-        var isError = IsErrorEvent(eventType, description);
+        var isError = eventType == EventType.Error;
+        var isWarning = eventType == EventType.Warning;
 
         var labEvent = new LabEvent
         {
@@ -157,18 +182,7 @@ public class VWorksLogParser : ILogParser
         };
     }
 
-    private static bool IsErrorEvent(EventType eventType, string description)
-    {
-        if (eventType == EventType.Error) return true;
 
-        var descriptionLower = description.ToLowerInvariant();
-
-        return descriptionLower.Contains("error") ||
-               descriptionLower.Contains("failed") ||
-               descriptionLower.Contains("exception") ||
-               descriptionLower.Contains("stack is empty") ||
-               descriptionLower.Contains("timeout");
-    }
 
     public string ExportToJson(ParsedLogData data)
     {
@@ -197,6 +211,7 @@ public class VWorksLogParser : ILogParser
         await writer.WriteLineAsync($"Generated: {DateTime.Now:yyyy-MM-dd HH:mm:ss}");
         await writer.WriteLineAsync($"Total Events: {data.Events.Count}");
         await writer.WriteLineAsync($"Total Errors: {data.Errors.Count}");
+        await writer.WriteLineAsync($"Total Warnings: {data.Warnings.Count}");
         await writer.WriteLineAsync();
 
         // Error Summary
@@ -207,6 +222,18 @@ public class VWorksLogParser : ILogParser
             foreach (var error in data.Errors)
             {
                 await writer.WriteLineAsync($"[{error.Timestamp:HH:mm:ss}] {error.Instrument} - {error.Description}");
+            }
+            await writer.WriteLineAsync();
+        }
+
+        // Warning Summary
+        if (data.Warnings.Count != 0)
+        {
+            await writer.WriteLineAsync("WARNING SUMMARY:");
+            await writer.WriteLineAsync("-" + new string('-', 30));
+            foreach (var warning in data.Warnings)
+            {
+                await writer.WriteLineAsync($"[{warning.Timestamp:HH:mm:ss}] {warning.Instrument} - {warning.Description}");
             }
             await writer.WriteLineAsync();
         }

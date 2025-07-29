@@ -43,6 +43,7 @@ interface LabEvent {
 interface ParsedLogData {
     events: LabEvent[];
     errors: LabEvent[];
+    warnings: LabEvent[];
     instrumentEventCounts: Record<string, number>;
     processGroups: Record<string, LabEvent[]>;
     parsedAt: string;
@@ -102,6 +103,24 @@ const sampleVWorksData: ParsedLogData = {
             rawLogLine: ''
         }
     ],
+    warnings: [
+        {
+            timestamp: '2024-07-17T11:09:15',
+            type: 'Warning',
+            category: 'Unknown',
+            instrument: 'Microscan Barcode Reader - 1',
+            location: '',
+            process: 'SAMPLE 2',
+            step: 1,
+            description: 'Barcode scan timeout',
+            protocol: 'Fuvmo-Dev',
+            filePath: 'C:\\VWorks Workspace\\Device Files\\Fuvmo-Dev.pro',
+            processId: 2,
+            isError: false,
+            isCompleted: false,
+            rawLogLine: ''
+        }
+    ],
     instrumentEventCounts: {
         'Agilent Linear Translator - 1': 25,
         'Microscan Barcode Reader - 1': 8,
@@ -121,16 +140,62 @@ interface VWorksDashboardProps {
 }
 
 const VWorksDashboard: React.FC<VWorksDashboardProps> = ({ onBack }) => {
-    const [logData, setLogData] = useState<ParsedLogData>(sampleVWorksData);
-    const [selectedTab, setSelectedTab] = useState<'overview' | 'events' | 'errors' | 'instruments'>('overview');
+    const [logData, setLogData] = useState<ParsedLogData>({
+        ...sampleVWorksData,
+        warnings: sampleVWorksData.warnings || []
+    });
+    const [selectedTab, setSelectedTab] = useState<'overview' | 'events' | 'errors' | 'warnings' | 'instruments'>('overview');
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const [directory, setDirectory] = useState<string>('C:\\VWorks Workspace\\VWorks\\Logs');
-    const [startDate, setStartDate] = useState<string>('');
-    const [endDate, setEndDate] = useState<string>('');
+
+    // Set default dates: start date 1 month ago, end date today
+    const today = new Date();
+    const oneMonthAgo = new Date();
+    oneMonthAgo.setMonth(today.getMonth() - 1);
+
+    const formatDateForInput = (date: Date) => {
+        const year = date.getFullYear();
+        const month = (date.getMonth() + 1).toString().padStart(2, '0');
+        const day = date.getDate().toString().padStart(2, '0');
+        return `${year}-${month}-${day}`;
+    };
+
+    const [startDate, setStartDate] = useState<string>(formatDateForInput(oneMonthAgo));
+    const [endDate, setEndDate] = useState<string>(formatDateForInput(today));
 
     const formatTimestamp = (timestamp: string) => {
-        return new Date(timestamp).toLocaleTimeString();
+        const date = new Date(timestamp);
+        const now = new Date();
+        const isToday = date.toDateString() === now.toDateString();
+        const isYesterday = date.toDateString() === new Date(now.getTime() - 24 * 60 * 60 * 1000).toDateString();
+
+        const timeString = date.toLocaleTimeString('en-US', {
+            hour: 'numeric',
+            minute: '2-digit',
+            hour12: true
+        });
+
+        if (isToday) {
+            return `Today at ${timeString}`;
+        } else if (isYesterday) {
+            return `Yesterday at ${timeString}`;
+        } else {
+            const month = date.toLocaleDateString('en-US', { month: 'long' });
+            const day = date.getDate();
+            const suffix = getDaySuffix(day);
+            return `${month} ${day}${suffix} at ${timeString}`;
+        }
+    };
+
+    const getDaySuffix = (day: number) => {
+        if (day >= 11 && day <= 13) return 'th';
+        switch (day % 10) {
+            case 1: return 'st';
+            case 2: return 'nd';
+            case 3: return 'rd';
+            default: return 'th';
+        }
     };
 
     const handleFolderClick = async () => {
@@ -186,7 +251,15 @@ const VWorksDashboard: React.FC<VWorksDashboardProps> = ({ onBack }) => {
 
             if (result) {
                 const parsed: ParsedLogData = JSON.parse(result);
-                setLogData(parsed);
+                // Ensure warnings property exists
+                setLogData({
+                    events: parsed.events || [],
+                    errors: parsed.errors || [],
+                    warnings: parsed.warnings || [],
+                    instrumentEventCounts: parsed.instrumentEventCounts || {},
+                    processGroups: parsed.processGroups || {},
+                    parsedAt: parsed.parsedAt || new Date().toISOString()
+                });
             }
         } catch (e: any) {
             setError(e?.toString() || 'Failed to parse logs');
@@ -335,7 +408,7 @@ const VWorksDashboard: React.FC<VWorksDashboardProps> = ({ onBack }) => {
                         </div>
 
                         <div className="text-sm text-gray-500">
-                            {logData.events.length > 0 && (
+                            {(logData.events?.length || 0) > 0 && logData.parsedAt && (
                                 <span>Last parsed: {new Date(logData.parsedAt).toLocaleString()}</span>
                             )}
                         </div>
@@ -346,26 +419,32 @@ const VWorksDashboard: React.FC<VWorksDashboardProps> = ({ onBack }) => {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
                     <StatCard
                         title="Total Events"
-                        value={logData.events.length}
+                        value={logData.events?.length || 0}
                         icon={Activity}
                         color="bg-blue-500"
                         trend="+12% from last hour"
                     />
                     <StatCard
-                        title="Active Errors"
-                        value={logData.errors.length}
+                        title="Errors"
+                        value={logData.errors?.length || 0}
                         icon={AlertTriangle}
                         color="bg-red-500"
                     />
                     <StatCard
+                        title="Warnings"
+                        value={logData.warnings?.length || 0}
+                        icon={AlertTriangle}
+                        color="bg-yellow-500"
+                    />
+                    <StatCard
                         title="Instruments"
-                        value={Object.keys(logData.instrumentEventCounts).length}
+                        value={Object.keys(logData.instrumentEventCounts || {}).length}
                         icon={Monitor}
                         color="bg-green-500"
                     />
                     <StatCard
                         title="Processes"
-                        value={Object.keys(logData.processGroups).length}
+                        value={Object.keys(logData.processGroups || {}).length}
                         icon={Settings}
                         color="bg-blue-500"
                     />
@@ -379,6 +458,7 @@ const VWorksDashboard: React.FC<VWorksDashboardProps> = ({ onBack }) => {
                                 { id: 'overview', label: 'Overview', icon: Monitor },
                                 { id: 'events', label: 'Recent Events', icon: Activity },
                                 { id: 'errors', label: 'Errors', icon: AlertTriangle },
+                                { id: 'warnings', label: 'Warnings', icon: AlertTriangle },
                                 { id: 'instruments', label: 'Instruments', icon: Settings }
                             ].map((tab) => {
                                 const Icon = tab.icon;
@@ -411,9 +491,12 @@ const VWorksDashboard: React.FC<VWorksDashboardProps> = ({ onBack }) => {
                                             Recent Activity
                                         </h3>
                                         <div className="space-y-3">
-                                            {logData.events.slice(0, 5).map((event, index) => (
+                                            {(logData.events || []).slice(0, 5).map((event, index) => (
                                                 <div key={index} className="flex items-center space-x-3 p-3 bg-white rounded-lg">
-                                                    <div className={`w-2 h-2 rounded-full ${event.isError ? 'bg-red-500' : 'bg-green-500'}`}></div>
+                                                    <div className={`w-2 h-2 rounded-full ${event.type === 'Error' ? 'bg-red-500' :
+                                                        event.type === 'Warning' ? 'bg-yellow-500' :
+                                                            'bg-green-500'
+                                                        }`}></div>
                                                     <div className="flex-1 min-w-0">
                                                         <p className="text-sm font-medium text-gray-900 truncate">{event.description}</p>
                                                         <p className="text-xs text-gray-500">{event.instrument} • {formatTimestamp(event.timestamp)}</p>
@@ -430,7 +513,7 @@ const VWorksDashboard: React.FC<VWorksDashboardProps> = ({ onBack }) => {
                                             Instrument Activity
                                         </h3>
                                         <div className="space-y-3">
-                                            {Object.entries(logData.instrumentEventCounts).map(([instrument, count]) => (
+                                            {Object.entries(logData.instrumentEventCounts || {}).map(([instrument, count]) => (
                                                 <div key={instrument} className="flex items-center justify-between p-3 bg-white rounded-lg">
                                                     <span className="text-sm font-medium text-gray-900 truncate">{instrument}</span>
                                                     <div className="flex items-center space-x-2">
@@ -449,9 +532,12 @@ const VWorksDashboard: React.FC<VWorksDashboardProps> = ({ onBack }) => {
                             <div className="space-y-4">
                                 <h3 className="text-lg font-semibold text-gray-900">Recent Events</h3>
                                 <div className="space-y-2">
-                                    {logData.events.map((event, index) => (
+                                    {(logData.events || []).map((event, index) => (
                                         <div key={index} className="flex items-center space-x-4 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-                                            <div className={`w-3 h-3 rounded-full ${event.isError ? 'bg-red-500' : event.isCompleted ? 'bg-green-500' : 'bg-blue-500'}`}></div>
+                                            <div className={`w-3 h-3 rounded-full ${event.type === 'Error' ? 'bg-red-500' :
+                                                event.type === 'Warning' ? 'bg-yellow-500' :
+                                                    event.isCompleted ? 'bg-green-500' : 'bg-blue-500'
+                                                }`}></div>
                                             <div className="flex-1 min-w-0">
                                                 <div className="flex items-center space-x-2">
                                                     <span className="text-sm font-medium text-gray-900">{event.instrument}</span>
@@ -476,10 +562,10 @@ const VWorksDashboard: React.FC<VWorksDashboardProps> = ({ onBack }) => {
                                 <div className="flex items-center justify-between">
                                     <h3 className="text-lg font-semibold text-gray-900">Error Log</h3>
                                     <span className="px-3 py-1 text-sm bg-red-100 text-red-800 rounded-full">
-                                        {logData.errors.length} active errors
+                                        {logData.errors?.length || 0} active errors
                                     </span>
                                 </div>
-                                {logData.errors.length === 0 ? (
+                                {(logData.errors?.length || 0) === 0 ? (
                                     <div className="text-center py-12">
                                         <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
                                         <h3 className="text-lg font-medium text-gray-900 mb-2">No errors found</h3>
@@ -487,7 +573,7 @@ const VWorksDashboard: React.FC<VWorksDashboardProps> = ({ onBack }) => {
                                     </div>
                                 ) : (
                                     <div className="space-y-3">
-                                        {logData.errors.map((error, index) => (
+                                        {(logData.errors || []).map((error, index) => (
                                             <div key={index} className="p-4 bg-red-50 border border-red-200 rounded-lg">
                                                 <div className="flex items-start space-x-3">
                                                     <AlertTriangle className="w-5 h-5 text-red-500 mt-0.5" />
@@ -510,11 +596,50 @@ const VWorksDashboard: React.FC<VWorksDashboardProps> = ({ onBack }) => {
                             </div>
                         )}
 
+                        {selectedTab === 'warnings' && (
+                            <div className="space-y-4">
+                                <div className="flex items-center justify-between">
+                                    <h3 className="text-lg font-semibold text-gray-900">Warning Log</h3>
+                                    <span className="px-3 py-1 text-sm bg-yellow-100 text-yellow-800 rounded-full">
+                                        {logData.warnings?.length || 0} active warnings
+                                    </span>
+                                </div>
+                                {(logData.warnings?.length || 0) === 0 ? (
+                                    <div className="text-center py-12">
+                                        <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
+                                        <h3 className="text-lg font-medium text-gray-900 mb-2">No warnings found</h3>
+                                        <p className="text-gray-600">All systems are running normally</p>
+                                    </div>
+                                ) : (
+                                    <div className="space-y-3">
+                                        {(logData.warnings || []).map((warning, index) => (
+                                            <div key={index} className="p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
+                                                <div className="flex items-start space-x-3">
+                                                    <AlertTriangle className="w-5 h-5 text-yellow-500 mt-0.5" />
+                                                    <div className="flex-1">
+                                                        <div className="flex items-center space-x-2 mb-1">
+                                                            <span className="text-sm font-medium text-yellow-900">{warning.instrument}</span>
+                                                            <span className="text-xs text-yellow-600">•</span>
+                                                            <span className="text-xs text-yellow-600">{formatTimestamp(warning.timestamp)}</span>
+                                                        </div>
+                                                        <p className="text-sm text-yellow-800">{warning.description}</p>
+                                                        {warning.location && (
+                                                            <p className="text-xs text-yellow-600 mt-1">Location: {warning.location}</p>
+                                                        )}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                )}
+                            </div>
+                        )}
+
                         {selectedTab === 'instruments' && (
                             <div className="space-y-4">
                                 <h3 className="text-lg font-semibold text-gray-900">Instrument Status</h3>
                                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                                    {Object.entries(logData.instrumentEventCounts).map(([instrument, count]) => (
+                                    {Object.entries(logData.instrumentEventCounts || {}).map(([instrument, count]) => (
                                         <div key={instrument} className="p-4 bg-gray-50 rounded-lg">
                                             <div className="flex items-center justify-between mb-3">
                                                 <h4 className="font-medium text-gray-900 text-sm truncate">{instrument}</h4>
