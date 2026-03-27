@@ -1,0 +1,125 @@
+VWorks Lab Automation Log Analysis Report
+===================================================
+Generated: 2025-07-25 22:54:32
+Total Events: 125
+Total Errors: 2
+
+ERROR SUMMARY:
+-------------------------------
+[19:35:53]  - Error library: The error library file path is empty.
+[19:35:54] ErrorLibrary - Dll loaded:    ErrorLibrary.dll    13.1.0
+
+INSTRUMENT ACTIVITY:
+-------------------------------
+Agilent BenchBot Robot: 2 events
+Agilent BenchCel: 2 events
+Agilent Centrifuge: 2 events
+Agilent Microplate Labeler: 2 events
+Agilent Phantom Stacker: 2 events
+Agilent PlateLoc: 2 events
+Agilent Labware Stacker: 2 events
+Agilent Vertical Pipetting Station: 2 events
+Plate Pad, Standard: 2 events
+AccessoriesWizard: 1 events
+AccessoryManager: 1 events
+AgilentBenchBotController: 1 events
+AgilentDDRController: 1 events
+ArgonShelfAccessoryDriver: 1 events
+ContextHelp: 1 events
+DDRStringTable: 1 events
+DeviceEnumerator: 1 events
+ErrorLibrary: 1 events
+FilterPlateHolderAccessoryDriver: 1 events
+GeminiAPI: 1 events
+GuidanceDiscovery: 1 events
+Host: 1 events
+ImportExport: 1 events
+InhecoMTCdll: 1 events
+InhecoShakeandHeatAccessoryDriver: 1 events
+IWorksAccessory: 1 events
+js32: 1 events
+LabelDesigner: 1 events
+LabelerHardware: 1 events
+libnspr4: 1 events
+LidHotelAccessoryDriver: 1 events
+lm: 1 events
+Loader: 1 events
+log4net: 1 events
+MagBeadAccessoryDriver: 1 events
+MetaDataPropertyManager: 1 events
+MTController: 1 events
+NestableTipBoxInsertAccessoryDriver: 1 events
+ObjectDatabase: 1 events
+ObjectManager: 1 events
+PicServoExtDll: 1 events
+PipetteHeadMode: 1 events
+PipetteTechniqueEditor: 1 events
+PlateMapDatabase: 1 events
+ProfileChangeLog: 1 events
+ProfileManager: 1 events
+ProfSkinm-RDE: 1 events
+ProfSkinm: 1 events
+ProfUISm-RDE: 1 events
+ProfUISm: 1 events
+ProfUisProfileManager: 1 events
+SciLexer: 1 events
+SerialDilution: 1 events
+TeleshakeAccessoryDriver: 1 events
+TipPosition: 1 events
+TipTracking: 1 events
+tmlcomm: 1 events
+TML_lib: 1 events
+Toolbox: 1 events
+V11DeviceDriver: 1 events
+V11FieldComposer: 1 events
+V11GanttChart: 1 events
+V11Labware: 1 events
+V11Liquids: 1 events
+V11Migrator: 1 events
+V11PipettingFormatWizard: 1 events
+V11PumpAccessoryDriver: 1 events
+V11SharedClasses: 1 events
+V11WellSelect: 1 events
+V11WellVolumeVisualizer: 1 events
+V11Wizard: 1 events
+VacuumFiltrationAccessoryDriver: 1 events
+VacuumLocatingStationDriver: 1 events
+VacuumShelfAccessoryDriver: 1 events
+VHookInterface: 1 events
+VWorks4COM: 1 events
+VWorks4Defs: 1 events
+VWorks4DeviceManager: 1 events
+VWorks4EmailDaemon: 1 events
+VWorks4FormManager: 1 events
+VWorks4GUI: 1 events
+VWorks4GUIFramework: 1 events
+VWorks4Hooks: 1 events
+VWorks4LabelDesigner: 1 events
+VWorks4Logger: 1 events
+VWorks4MacroLibrary: 1 events
+VWorks4Progress: 1 events
+VWorks4ProtocolEditor: 1 events
+VWorks4Security: 1 events
+VWorks4UserDatabase: 1 events
+VWorks4UserManager: 1 events
+WeighPadAccessoryDriver: 1 events
+Agilent ACU: 1 events
+Agilent Bravo: 1 events
+Agilent Centrifuge Loader: 1 events
+Agilent Direct Drive Robot: 1 events
+Agilent Generic I/O Module: 1 events
+Agilent Generic RS-232 Device: 1 events
+Agilent Labware MiniHub: 1 events
+Agilent Phantom Robot: 1 events
+Agilent Plate Hotel: 1 events
+Waste Bin: 1 events
+Microscan Barcode Reader: 1 events
+Agilent Centrifuge - 1: 1 events
+Agilent Labware Stacker - 1: 1 events
+Agilent Microplate Labeler - 1: 1 events
+Agilent PlateLoc - 1: 1 events
+Agilent Vertical Pipetting Station - 1: 1 events
+Agilent Vertical Pipetting Station - 2: 1 events
+
+PROCESS SUMMARY:
+-------------------------------
